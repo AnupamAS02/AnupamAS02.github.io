@@ -77,7 +77,8 @@ const About = () => {
 
         <CometCard className="w-full lg:w-[40%] rounded-lg p-1 max-w-[400px] mx-auto">
           <img
-            src="https://images.unsplash.com/photo-1695927621677-ec96e048dce2?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="/profile.png"
+            alt="Anupam Singh"
             className="rounded-lg h-80 sm:h-[420px] w-full object-cover object-top"
           />
         </CometCard>
