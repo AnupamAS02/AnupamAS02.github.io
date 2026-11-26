@@ -73,3 +73,26 @@ Changes are for founder review on `brainer/work`, not deployed. The founder revi
 - Desktop Projects link reaches `#projects`. Mobile menu opens with Enter, exposes Projects, and closes after keyboard selection. New source link receives keyboard focus with a visible outline. Existing contact route and navigation remain unchanged; no message sent.
 - Public portfolio source, local résumé PDF, and existing Lunacal destination return HTTP 200 (Lunacal redirects to `https://lunacal.ai/`). LinkedIn returns HTTP 999 to automated requests; retained the existing URL and recommend a normal-browser check before publishing.
 - Changes remain on `brainer/work` for the existing pull request. No deploy or merge was performed; no hosting configuration or new environment keys are required.
+
+## Discovery and usability — milestone 3
+
+### Changes and hosting evidence
+
+- Page title and description identify Anupam Singh's cybersecurity portfolio; no new credentials, availability promises, or social handles. Static Open Graph and Twitter large-image tags are in built HTML, readable without JavaScript.
+- Canonical and Open Graph URLs use `https://anupamas02.github.io/`. This is the user-site address of this repository, responds HTTP 200 from GitHub Pages, and has no redirect to another domain. No CNAME or alternate deployment base is tracked; Vite uses the root base and the existing publishing script uses `gh-pages -d dist`. If hosting changes, update these absolute URLs together.
+- `public/social-preview.png` is a 1200×630 PNG (about 41 KB), using the unchanged original logo, local Manrope font, and approved navy/slate/green/light palette. Editable artwork is `scripts/social-preview.html`; regeneration instructions are in its comment. The original favicon remains unchanged. Artwork was visually reviewed for readable type and logo contrast.
+- Kept the existing navigation rather than rebuilding it. Added Escape dismissal with focus returned to the toggle, focusable fragment destinations (not extra Tab stops), and a viewport-height cap with scrolling for the menu on short screens.
+- External links and résumé PDFs now use the same tab, retaining standard browser Back and modifier-click choices. PDF link labels remain explicit. The shared Button component also adds safe `rel` values if a future caller requests a new tab.
+
+### Reproduction and results
+
+- `npm ci`, `npm run build` (TypeScript included), `npm run lint`, `node scripts/check-metadata.mjs`, and `git diff --check`: pass. Installation audit reports 0 vulnerabilities. Node 26 emits the previously documented non-failing deprecation warning. No deploy command run.
+- The new Node metadata check inspects `dist/index.html`, uniqueness of tags, verified canonical/OG URLs, matching OG/Twitter title/description/image/alt, absence of unverified Twitter handles, favicon presence, and PNG signature/dimensions. It needs only Node; run after the production build. No general component-test framework is configured.
+- Production preview at 320×812, 375×812, 768×1024, and 1440×900: no horizontal overflow, broken images, or missing fragment targets. Visual check at 375×812: header, hero, and contact action remain readable.
+- At 667×375 landscape, the open menu scrolls inside the viewport; its Contact link becomes visible on keyboard focus and activates successfully.
+- Keyboard: first Tab reveals Skip to content with a solid outline; Enter focuses `main`. Desktop About/Experience/Projects/Certifications each focus their section. Mobile Enter opens the menu; Escape from a menu link closes it and returns focus to the toggle. Projects/Contact selection closes the menu and focuses the destination. Next Tab after Projects reaches the source link with a visible focus outline. Existing email href remains unchanged; no message or delivery test performed.
+- Local logo, résumé, and new PNG return HTTP 200 with SVG/PDF/PNG content types. PNG is included in the production build. Public GitHub source returns 200; Lunacal redirects to its current HTTPS root and returns 200. Existing LinkedIn still returns HTTP 999 to automated requests; normal-browser verification remains recommended.
+
+### Preview and publishing limitations
+
+Social platforms cannot fetch this unmerged branch/local preview. Their rendered cards and search snippets were not claimed as verified; they may cache previous metadata, select different text, or crop the image. After reviewing and merging PR #1, publish the production `dist` using the existing process, then check the public HTML/image and refresh platform previews as needed. The currently served public HTML references `/src/main.tsx`, so ensure publishing uses built output rather than the repository's source HTML. No hosting settings, credentials, environment keys, or service configuration were changed. Nothing merged or deployed.

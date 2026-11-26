@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- Rebuild PNG: serve with Vite, open /scripts/social-preview.html at 1200×630,
+     wait for document.fonts.ready and the logo, then save a viewport PNG to
+     public/social-preview.png. Uses only the original logo and local font. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio social image artwork</title>
+  <style>
+    @font-face { font-family: Manrope; src: url('/fonts/manrope.ttf'); }
+    * { box-sizing: border-box; }
+    body { margin: 0; width: 1200px; height: 630px; background: #f8fafc; color: #0f172a; font-family: Manrope, sans-serif; padding: 64px 72px; border-top: 12px solid #22c55e; }
+    header { display: flex; align-items: center; gap: 24px; font-size: 24px; font-weight: 700; }
+    img { width: 88px; height: 88px; }
+    h1 { font-size: 74px; line-height: 1.15; margin: 58px 0 16px; letter-spacing: -2px; }
+    p { margin: 0; font-size: 32px; color: #334155; }
+    footer { margin-top: 50px; font-size: 23px; color: #334155; }
+  </style>
+</head>
+<body>
+  <header><img src="/logo.svg" alt="" />AnupamAS02.github.io</header>
+  <h1>Anupam Singh</h1>
+  <p>Cybersecurity portfolio</p>
+  <footer>Web application &amp; API security</footer>
+</body>
+</html>

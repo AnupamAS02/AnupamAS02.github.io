@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const navLinks = [
   { id: "about", title: "About" },
@@ -9,15 +9,22 @@ const navLinks = [
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="fixed top-0 z-10 left-0 w-full bg-background/95 border-b border-subtle/15 backdrop-blur-md">
-      <nav aria-label="Main navigation" className="max-w-[1200px] mx-auto px-6 sm:px-10 py-4 flex flex-wrap items-center justify-between gap-4">
+    <div className="fixed top-0 z-10 left-0 w-full max-h-dvh overflow-y-auto bg-background/95 border-b border-subtle/15 backdrop-blur-md">
+      <nav aria-label="Main navigation" onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen) {
+          setMenuOpen(false);
+          menuButton.current?.focus();
+        }
+      }} className="max-w-[1200px] mx-auto px-6 sm:px-10 py-4 flex flex-wrap items-center justify-between gap-4">
         <a href="#top" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 font-bold text-sm sm:text-base">
           <img src="/logo.svg" alt="" className="w-9 h-9" />
           AnupamAS02.github.io
         </a>
         <button
+          ref={menuButton}
           type="button"
           className="lg:hidden border border-subtle/30 rounded-lg px-3 min-h-11 text-sm font-semibold"
           aria-expanded={menuOpen}
@@ -32,7 +39,7 @@ const Navbar = () => {
               {link.title}
             </a>
           ))}
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-sm py-3 hover:underline underline-offset-4">
+          <a href="/resume.pdf" className="text-sm py-3 hover:underline underline-offset-4">
             Résumé (PDF)
           </a>
           <a href="#contact" onClick={() => setMenuOpen(false)} className="bg-accent text-foreground rounded-lg px-5 py-3 font-semibold text-sm w-fit">

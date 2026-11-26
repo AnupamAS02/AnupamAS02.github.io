@@ -16,9 +16,7 @@ const Experience = () => {
     >
       <Card className="px-4 py-8 sm:px-8 flex flex-col">
         <a
-          target="_blank"
           href="https://www.lunacal.ai/"
-          rel="noopener noreferrer"
           className="text-lg sm:text-xl font-bold hover:underline block w-fit"
         >
           Lunacal.ai

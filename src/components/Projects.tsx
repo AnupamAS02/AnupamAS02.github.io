@@ -22,7 +22,7 @@ const Projects = () => {
             <div><dt className="font-semibold">Technical context</dt><dd className="text-subtle">A static, single-page site with section navigation and a responsive layout.</dd></div>
             <div><dt className="font-semibold">What to review</dt><dd className="text-subtle">Component structure, page content, and build setup in the source code.</dd></div>
           </dl>
-          <a href="https://github.com/AnupamAS02/AnupamAS02.github.io" target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center min-h-11 font-semibold underline underline-offset-4">
+          <a href="https://github.com/AnupamAS02/AnupamAS02.github.io" className="mt-auto inline-flex items-center min-h-11 font-semibold underline underline-offset-4">
             Review portfolio source on GitHub
           </a>
         </Card>
@@ -38,7 +38,7 @@ const Projects = () => {
             <div><dt className="font-semibold">Technical context</dt><dd className="text-subtle">Image thresholding, neural-network classification, and a Java desktop interface.</dd></div>
             <div><dt className="font-semibold">Project record</dt><dd className="text-subtle">Listed under Cyberx Technologies, Kanpur, August 2022–August 2023, in my résumé. The available record is a summary, not a code repository or demo.</dd></div>
           </dl>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center min-h-11 font-semibold underline underline-offset-4">
+          <a href="/resume.pdf" className="mt-auto inline-flex items-center min-h-11 font-semibold underline underline-offset-4">
             Read the project summary in my résumé (PDF)
           </a>
         </Card>
@@ -52,7 +52,7 @@ const Projects = () => {
         </p>
         <p className="text-subtle leading-relaxed">
           For professional background, view my{" "}
-          <a href="https://www.linkedin.com/in/anupamas02/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 font-semibold">LinkedIn profile</a>
+          <a href="https://www.linkedin.com/in/anupamas02/" className="underline underline-offset-4 font-semibold">LinkedIn profile</a>
           {" "}or the <a href="#experience" className="underline underline-offset-4 font-semibold">Experience section</a>.
         </p>
       </div>

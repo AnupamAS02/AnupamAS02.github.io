@@ -11,7 +11,7 @@ const App = () => {
     <div className="relative min-h-screen w-full">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3">Skip to content</a>
       <Navbar />
-      <main id="main" className="max-w-[1080px] w-full mx-auto px-6 sm:px-10">
+      <main tabIndex={-1} id="main" className="max-w-[1080px] w-full mx-auto px-6 sm:px-10">
         <Hero />
         <About />
         <Experience />

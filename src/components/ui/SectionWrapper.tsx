@@ -32,6 +32,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
         type: "tween",
         duration: 0.5,
       }}
+      tabIndex={-1}
       id={id}
       className={cn(`w-full`, className)}
     >

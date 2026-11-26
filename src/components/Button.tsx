@@ -20,7 +20,7 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} target={target} className={classes}>
+      <a href={href} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined} className={classes}>
         {children}
       </a>
     );

@@ -2,7 +2,7 @@ import Button from "./Button";
 
 const Hero = () => {
   return (
-    <header id="top" className="min-h-[85svh] flex w-full items-center pt-40 pb-20 sm:pt-36">
+    <header tabIndex={-1} id="top" className="min-h-[85svh] flex w-full items-center pt-40 pb-20 sm:pt-36">
       <div className="flex flex-col gap-6 max-w-[850px]">
         <p className="text-sm font-semibold tracking-wide text-subtle">
           Cybersecurity Analyst · Penetration Tester

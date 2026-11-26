@@ -29,7 +29,7 @@ const Contact = () => {
         <p className="text-sm text-subtle break-all">theanupamsingh01@gmail.com</p>
         <p className="text-sm text-subtle">
           You can also view my{" "}
-          <a href="https://www.linkedin.com/in/anupamas02/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">
+          <a href="https://www.linkedin.com/in/anupamas02/" className="underline underline-offset-4">
             LinkedIn profile
           </a>.
         </p>
