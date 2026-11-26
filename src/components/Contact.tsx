@@ -5,7 +5,8 @@ import SectionWrapper from "./ui/SectionWrapper";
 const Contact = () => {
   return (
     <SectionWrapper className="my-16 sm:my-24" id="contact" title="Contact" position={5}>
-      <Card className="flex flex-col items-start gap-6 py-8 sm:py-12 px-6 sm:px-10">
+      <Card className="flex flex-col items-start gap-6 py-8 sm:py-12 px-6 sm:px-10 border-accent">
+        <p className="font-mono text-xs text-accent">anupam@portfolio:~$ contact</p>
         <h3 className="text-2xl sm:text-3xl font-bold">
           Let’s discuss your security needs.
         </h3>

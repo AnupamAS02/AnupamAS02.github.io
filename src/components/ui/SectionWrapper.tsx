@@ -1,9 +1,4 @@
-import {
-  createVariantsWithTransition,
-  presetVariants,
-} from "@utils/animations";
 import { cn } from "@utils/index";
-import { motion } from "motion/react";
 
 type SectionWrapperProps = {
   children: React.ReactNode;
@@ -13,44 +8,15 @@ type SectionWrapperProps = {
   position: number;
 };
 
-const SectionWrapper: React.FC<SectionWrapperProps> = ({
-  children,
-  id,
-  className,
-  title,
-  position,
-}) => {
-  return (
-    <motion.section
-      variants={createVariantsWithTransition(
-        presetVariants["fade-in-blur"].item
-      )}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        type: "tween",
-        duration: 0.5,
-      }}
-      tabIndex={-1}
-      id={id}
-      className={cn(`w-full`, className)}
-    >
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 flex items-center gap-6 text-primary">
-        <span className="min-w-0">
-          <span className="">0{position}.</span> <span>{title}</span>
-        </span>
-        <motion.div
-          initial={{ scaleX: 0, originX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-          className="h-[2px] rounded-full bg-gradient-to-r from-primary from-10% to-90% via-black/50 to-transparent flex-1 min-w-0"
-        />
-      </h2>
-      {children}
-    </motion.section>
-  );
-};
+const SectionWrapper: React.FC<SectionWrapperProps> = ({ children, id, className, title, position }) => (
+  <section tabIndex={-1} id={id} aria-labelledby={`${id}-title`} className={cn("w-full border-t border-secondary pt-10 sm:pt-12", className)}>
+    <div className="flex items-center gap-4 mb-8">
+      <span aria-hidden="true" className="font-mono text-accent text-sm">[0{position}]</span>
+      <h2 id={`${id}-title`} className="text-2xl sm:text-3xl font-bold tracking-tight">{title}</h2>
+      <span aria-hidden="true" className="hidden sm:block h-px bg-secondary flex-1 ml-4" />
+    </div>
+    {children}
+  </section>
+);
 
 export default SectionWrapper;

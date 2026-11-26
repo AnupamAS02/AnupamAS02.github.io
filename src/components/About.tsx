@@ -1,5 +1,4 @@
 import Card from "./ui/Card";
-import { CometCard } from "./ui/CometCard";
 import SectionWrapper from "./ui/SectionWrapper";
 
 const skillsData = [
@@ -36,8 +35,8 @@ const skillsData = [
 const About = () => {
   return (
     <SectionWrapper id="about" title="About Me" position={1}>
-      <div className="flex flex-col-reverse lg:flex-row gap-6">
-        <div className="flex flex-col gap-6 text-subtle flex-1 min-w-0 text-sm lg:text-base">
+      <div className="max-w-[850px]">
+        <div className="flex flex-col gap-6 text-subtle flex-1 min-w-0 text-sm lg:text-base leading-relaxed">
           <p>
             I’m Anupam Singh, a penetration tester and security researcher.
             My experience includes web application and API security testing,
@@ -64,16 +63,10 @@ const About = () => {
           </p>
         </div>
 
-        <CometCard className="w-full lg:w-[40%] rounded-lg p-1 max-w-[400px] mx-auto">
-          <img
-            src="/profile.png"
-            alt="Anupam Singh"
-            className="rounded-lg h-80 sm:h-[420px] w-full object-cover object-top"
-          />
-        </CometCard>
+
       </div>
-      <hr className="border border-primary/25 my-8" />
-      <div className="space-y-8">
+      <hr className="border-t border-secondary my-8" />
+      <div className="grid md:grid-cols-2 gap-8">
         {skillsData.map(({ category, items }) => (
           <div key={category}>
             <h3 className="text-xl font-bold text-foreground mb-6">
@@ -83,7 +76,7 @@ const About = () => {
               {items.map((item) => (
                 <Card
                   key={item}
-                  className="px-3 py-1 cursor-default text-xs sm:text-sm text-subtle rounded-md duration-300 font-medium w-fit hover:border-primary hover:text-primary transition-colors"
+                  className="px-3 py-1 cursor-default font-mono text-xs sm:text-sm text-subtle rounded-md duration-300 font-medium w-fit hover:border-primary hover:text-primary transition-colors"
                 >
                   {item}
                 </Card>

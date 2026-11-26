@@ -10,11 +10,11 @@ const Experience = () => {
   return (
     <SectionWrapper
       id="experience"
-      title=" Experience"
+      title="Experience"
       position={2}
       className="mt-16 sm:mt-24"
     >
-      <Card className="px-4 py-8 sm:px-8 flex flex-col">
+      <Card className="px-6 py-8 sm:px-8 flex flex-col border-l-2 border-l-accent">
         <a
           href="https://www.lunacal.ai/"
           className="text-lg sm:text-xl font-bold hover:underline block w-fit"
@@ -27,7 +27,7 @@ const Experience = () => {
         <p className="text-sm sm:text-base font-medium">
           December 2024 - Present{" "}
         </p>
-        <div className="text-sm sm:text-base mt-6 flex flex-col gap-4 text-subtle">
+        <div className="text-sm sm:text-base mt-6 flex flex-col gap-4 text-subtle leading-relaxed">
           <p className="">
             As a Web App Penetration Testing Intern at Lunacal, I was
             responsible for identifying and reporting security vulnerabilities
@@ -51,7 +51,7 @@ const Experience = () => {
           </p>
         </div>
       </Card>
-      <hr className="border border-primary/25 my-8" />
+      <hr className="border-t border-secondary my-8" />
 
       <h3 className="text-xl font-bold text-foreground mb-6">
         Bounty Acknowledgement
@@ -60,7 +60,7 @@ const Experience = () => {
         {images.map((src, index) => (
           <Card
             key={index}
-            className="aspect-square flex items-center justify-center p-2 bg-primary hover:border-accent transition duration-300"
+            className="h-24 sm:h-28 flex items-center justify-center p-2 bg-background hover:border-accent transition duration-300"
           >
             <img
               src={src}
