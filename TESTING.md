@@ -96,3 +96,15 @@ Changes are for founder review on `brainer/work`, not deployed. The founder revi
 ### Preview and publishing limitations
 
 Social platforms cannot fetch this unmerged branch/local preview. Their rendered cards and search snippets were not claimed as verified; they may cache previous metadata, select different text, or crop the image. After reviewing and merging PR #1, publish the production `dist` using the existing process, then check the public HTML/image and refresh platform previews as needed. The currently served public HTML references `/src/main.tsx`, so ensure publishing uses built output rather than the repository's source HTML. No hosting settings, credentials, environment keys, or service configuration were changed. Nothing merged or deployed.
+
+## Founder-directed hacker/terminal visual refinement — task 7 follow-up
+
+Founder direction: “make it look like you're viewing a hacker's portfolio website”. This supersedes the light-space preference for this design task.
+
+- Dark navy surfaces, subtle slate grid, green terminal prompts, technical monospaced navigation/details, and compact terminal-window portrait framing. Existing Manrope body and Tanker headline fonts remain; system monospace needs no remote font. No simulated findings, scans, client activity, typing animation or invented credentials.
+- Existing portrait moved into the introduction. Preserved logo, résumé, 12 acknowledgement assets, genuine project evidence, experience, certification, metadata and contact destinations. Green actions use navy text for contrast. The original logo has a white backing without changing the SVG.
+- Consistent numbered section headings and dark bordered cards, grouped skills, clearly separated project context/review evidence, prominent contact card and footer return link. Removed section blur/reveal and portrait tilt for immediate readability and reduced-motion friendliness; no new animation.
+- `npm ci`, build (including TypeScript), lint, metadata checks and diff checks pass; install audit reports zero known vulnerabilities. Existing Node build warning is non-failing.
+- Production preview at 320×812, 375×812, 768×1024 and 1440×1000: no horizontal overflow, broken images, or missing fragment targets. Visually reviewed desktop introduction/projects and mobile contact. Phone cards stack and text wraps.
+- Keyboard: first Tab reveals skip link with green outline; Enter focuses main. Projects link focuses its section. Mobile menu opens with Enter, Escape returns focus to the toggle, and Contact closes the menu and focuses contact. At 667×375 landscape the menu scrolls and its focused Contact action remains within the viewport. Existing reduced-motion CSS remains; section content no longer depends on animation.
+- Email destination remains unchanged; no message sent. No hosting settings, credentials or external destinations changed. Screenshots attached in Brainer. Changes are on brainer/work for founder review; never merged or deployed.
