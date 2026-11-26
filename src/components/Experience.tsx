@@ -18,6 +18,7 @@ const Experience = () => {
         <a
           target="_blank"
           href="https://www.lunacal.ai/"
+          rel="noopener noreferrer"
           className="text-lg sm:text-xl font-bold hover:underline block w-fit"
         >
           Lunacal.ai
@@ -54,14 +55,14 @@ const Experience = () => {
       </Card>
       <hr className="border border-primary/25 my-8" />
 
-      <h3 className="text-xl font-bold text-white mb-6">
+      <h3 className="text-xl font-bold text-foreground mb-6">
         Bounty Acknowledgement
       </h3>
       <div className="grid grid-cols-4 sm:grid-cols-6 gap-4 md:gap-6">
         {images.map((src, index) => (
           <Card
             key={index}
-            className="aspect-square flex items-center justify-center p-2 hover:border-primary/40 transition duration-300"
+            className="aspect-square flex items-center justify-center p-2 bg-primary hover:border-accent transition duration-300"
           >
             <img
               src={src}

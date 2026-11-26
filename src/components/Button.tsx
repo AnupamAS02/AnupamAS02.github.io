@@ -14,7 +14,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const classes = cn(
-    `rounded-lg border flex items-center justify-center border-dashed border-primary px-6 h-10 font-medium text-primary transition-all duration-300 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:rounded-sm hover:shadow-[4px_4px_0px_var(--primary)] active:translate-x-[0px] active:translate-y-[0px] text-sm cursor-pointer active:rounded-2xl active:shadow-none`,
+    `rounded-lg flex items-center justify-center bg-accent px-6 h-10 font-medium text-foreground transition-opacity hover:opacity-90 text-sm cursor-pointer`,
     className
   );
 

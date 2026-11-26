@@ -1,5 +1,4 @@
 import About from "@components/About";
-import Background from "@components/Background";
 import Certifications from "@components/Certifications";
 import Contact from "@components/Contact";
 import Experience from "@components/Experience";
@@ -9,15 +8,15 @@ import Navbar from "@components/Navbar";
 const App = () => {
   return (
     <div className="relative min-h-screen w-full">
-      <Background />
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3">Skip to content</a>
       <Navbar />
-      <div className="max-w-[1080px] w-full mx-auto px-6 sm:px-10">
+      <main id="main" className="max-w-[1080px] w-full mx-auto px-6 sm:px-10">
         <Hero />
         <About />
         <Experience />
         <Certifications />
         <Contact />
-      </div>
+      </main>
     </div>
   );
 };

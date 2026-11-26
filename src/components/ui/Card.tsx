@@ -10,7 +10,7 @@ const Card: React.FC<CardProps> = ({ children, className }) => {
   return (
     <div
       className={cn(
-        `bg-gradient-to-b from-black/5 from-60% to-primary/2 border-2 border-subtle/10 rounded-xl shadow-md w-full`,
+        `bg-white border border-subtle/20 rounded-xl shadow-sm w-full`,
         className
       )}
     >
