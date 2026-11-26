@@ -35,7 +35,7 @@ const skillsData = [
 const About = () => {
   return (
     <SectionWrapper id="about" title="About Me" position={1}>
-      <div className="max-w-[850px]">
+      <div className="grid lg:grid-cols-[1fr_260px] gap-8 lg:gap-12 items-start">
         <div className="flex flex-col gap-6 text-subtle flex-1 min-w-0 text-sm lg:text-base leading-relaxed">
           <p>
             I’m Anupam Singh, a penetration tester and security researcher.
@@ -63,6 +63,11 @@ const About = () => {
           </p>
         </div>
 
+        <figure className="terminal-panel max-w-[320px] w-full mx-auto">
+          <div className="terminal-bar"><span className="text-accent">ABOUT THE RESEARCHER</span></div>
+          <img src="/profile.png" alt="Anupam Singh" width="320" height="320" loading="lazy" className="w-full h-72 object-cover object-top" />
+          <figcaption className="px-5 py-4 text-sm font-semibold">Anupam Singh</figcaption>
+        </figure>
 
       </div>
       <hr className="border-t border-secondary my-8" />
