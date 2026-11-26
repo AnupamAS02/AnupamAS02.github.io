@@ -11,11 +11,12 @@
 }
 
 :root {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(1 0 0);
-  --subtle: oklch(90% 0.02291 256.75);
-  --primary: oklch(90% 0.1617 161.02);
-  --secondary: oklch(75% 0.15 280);
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --subtle: #334155;
+  --primary: #0f172a;
+  --accent: #22c55e;
+  --secondary: #334155;
   --font-manrope: "manrope", sans-serif;
   --font-tanker: "tanker", sans-serif;
 }
@@ -25,9 +26,10 @@
   --color-foreground: var(--foreground);
   --color-subtle: var(--subtle);
   --color-primary: var(--primary);
+  --color-accent: var(--accent);
   --color-secondary: var(--secondary);
-  --font-manrope: var(--font-sans);
-  --font-tanker: var(--font-heading);
+  --font-manrope: "manrope", sans-serif;
+  --font-tanker: "tanker", sans-serif;
 }
 
 html {
@@ -47,5 +49,18 @@ body {
   }
   to {
     rotate: 360deg;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

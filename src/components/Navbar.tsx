@@ -1,98 +1,53 @@
-import type React from "react";
-import { useState } from "react";
-import Button from "./Button";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { motion } from "motion/react";
-import { fadeInAnimation } from "@utils/animations";
+import { useRef, useState } from "react";
 
 const navLinks = [
   { id: "about", title: "About" },
   { id: "experience", title: "Experience" },
-  { id: "certifications", title: "Certifications " },
-  { id: "contact", title: "Contact" },
+  { id: "projects", title: "Projects" },
+  { id: "certifications", title: "Certifications" },
 ];
 
 const Navbar = () => {
-  const { scrollY } = useScroll();
-  const [scrolled, setScrolled] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (current) => {
-    setScrolled(current >= 150);
-  });
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
   return (
-    <div className="fixed top-0 z-10 left-0 w-full flex items-center justify-center p-2">
-      <motion.nav
-        animate={{
-          backdropFilter: scrolled ? "blur(4px)" : "none",
-          backgroundColor: scrolled
-            ? "oklch(from var(--background) l c h / 0.35)"
-            : "transparent",
-          scaleX: scrolled ? 0.975 : 1,
-        }}
-        transition={{
-          type: "tween",
-        }}
-        className="flex items-center justify-between  max-w-[1200px] w-full py-3 px-6 rounded-xl"
-      >
-        <motion.a
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: 2,
-          }}
-          href="/"
-          className="font-bold text-primary"
+    <div className="fixed top-0 z-10 left-0 w-full max-h-dvh overflow-y-auto bg-background/95 border-b border-subtle/15 backdrop-blur-md">
+      <nav aria-label="Main navigation" onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen) {
+          setMenuOpen(false);
+          menuButton.current?.focus();
+        }
+      }} className="max-w-[1200px] mx-auto px-6 sm:px-10 py-4 flex flex-wrap items-center justify-between gap-4">
+        <a href="#top" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 font-bold text-sm sm:text-base">
+          <img src="/logo.svg" alt="" className="w-9 h-9" />
+          AnupamAS02.github.io
+        </a>
+        <button
+          ref={menuButton}
+          type="button"
+          className="lg:hidden border border-subtle/30 rounded-lg px-3 min-h-11 text-sm font-semibold"
+          aria-expanded={menuOpen}
+          aria-controls="navigation-links"
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-          [ Anupam Singh ]
-        </motion.a>
-        <div className="flex items-center gap-8">
-          <div className="items-center gap-8 hidden lg:flex">
-            {navLinks.map((link, index) => {
-              return (
-                <NavLink
-                  key={link.id}
-                  id={link.id}
-                  title={link.title}
-                  index={index}
-                />
-              );
-            })}
-          </div>
-          <motion.div {...fadeInAnimation(navLinks.length * 0.15)}>
-            <Button
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Resume
-            </Button>
-          </motion.div>
+          {menuOpen ? "Close menu" : "Menu"}
+        </button>
+        <div id="navigation-links" className={`${menuOpen ? "flex" : "hidden"} lg:flex w-full lg:w-auto flex-col lg:flex-row lg:items-center gap-2 lg:gap-6`}>
+          {navLinks.map((link) => (
+            <a key={link.id} href={`#${link.id}`} onClick={() => setMenuOpen(false)} className="font-semibold text-sm py-3 hover:underline underline-offset-4">
+              {link.title}
+            </a>
+          ))}
+          <a href="/resume.pdf" className="text-sm py-3 hover:underline underline-offset-4">
+            Résumé (PDF)
+          </a>
+          <a href="#contact" onClick={() => setMenuOpen(false)} className="bg-accent text-foreground rounded-lg px-5 py-3 font-semibold text-sm w-fit">
+            Contact Anupam
+          </a>
         </div>
-      </motion.nav>
+      </nav>
     </div>
-  );
-};
-
-type NavLinkProps = {
-  id: string;
-  title: string;
-  index: number;
-};
-
-const NavLink: React.FC<NavLinkProps> = ({ id, title, index }) => {
-  return (
-    <motion.a
-      {...fadeInAnimation(index * 0.15)}
-      href={`#${id}`}
-      className="text-white font-semibold text-sm hover:text-primary flex items-center gap-2"
-    >
-      <span className="text-primary">0{index + 1}.</span> {title}
-    </motion.a>
   );
 };
 

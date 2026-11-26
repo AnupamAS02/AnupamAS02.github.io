@@ -3,12 +3,6 @@ import SectionWrapper from "./ui/SectionWrapper";
 
 const certifications = [
   {
-    title: "Cyberx Technologies, Kanpur",
-    date: "Aug 2022-Aug 2023",
-    description:
-      "As part of B.Tech. Research Project (6th Semester, team of two), we used techniques like Otsu's method and a Multi-Layer Perceptron, to achieve an accuracy of 95.6% in detecting legible Handwritten Numerical Digits. I was responsible for the GUI for the application that I developed using J2SE (Java).",
-  },
-  {
     title: "Certified Ethical Hacker ( CEH ), EC-Council",
     date: "July 2024-July 2027 ",
     description:
@@ -21,7 +15,7 @@ const Certifications = () => {
     <SectionWrapper
       id="certifications"
       className="mt-16 sm:mt-24"
-      position={3}
+      position={4}
       title="Trainings & Certificates"
     >
       <div className="flex flex-col gap-6">

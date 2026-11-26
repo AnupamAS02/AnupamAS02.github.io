@@ -39,14 +39,11 @@ const About = () => {
       <div className="flex flex-col-reverse lg:flex-row gap-6">
         <div className="flex flex-col gap-6 text-subtle flex-1 min-w-0 text-sm lg:text-base">
           <p>
-            I am <span className="text-primary">Anupam Singh</span>, a
-            passionate
-            <span className="text-primary"> Penetration Tester</span>, Security
-            Researcher, and Bug Bounty Hunter with proven expertise in
-            identifying and exploiting vulnerabilities through both manual and
-            automated testing methods. My experience spans vulnerability
-            assessments, web application penetration testing, API security
-            testing, and business logic flaw exploitation.
+            I’m Anupam Singh, a penetration tester and security researcher.
+            My experience includes web application and API security testing,
+            vulnerability assessment, and business logic testing using manual
+            and automated methods. Testing requires written authorisation and
+            an agreed scope.
           </p>
 
           <p>
@@ -55,23 +52,15 @@ const About = () => {
             credential from EC-Council (valid through 2027) and have hands-on
             experience with tools such as
             <span className="text-primary"> Burp Suite Pro</span>, OWASP ZAP,
-            Nessus, Kali Linux, SQLMap, and Postman. My bug hunting track record
-            includes discoveries in XSS, IDOR, dependency confusion, information
-            disclosure, open redirects, and critical business logic flaws,
-            including a vulnerability in the official
-            <span className="text-primary">
-              {" "}
-              California Government (ca.gov)
-            </span>{" "}
-            domain.
+            Nessus, Kali Linux, SQLMap, and Postman. My areas of focus include
+            cross-site scripting (XSS), insecure direct object references (IDOR),
+            information disclosure, and business logic flaws.
           </p>
 
           <p>
             Outside of professional engagements, I actively sharpen my skills on
             platforms like Hack The Box and TryHackMe, focusing on red teaming,
-            exploit development, and lateral movement simulations. I am eager to
-            contribute to high-impact security teams, deliver thorough
-            penetration tests, and mentor emerging talent in cybersecurity.
+            exploit development, and lateral movement simulations in lab environments.
           </p>
         </div>
 
