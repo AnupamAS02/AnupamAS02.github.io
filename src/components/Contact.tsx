@@ -1,4 +1,5 @@
 import Button from "./Button";
+import ScopingEmail from "./ScopingEmail";
 import Card from "./ui/Card";
 import SectionWrapper from "./ui/SectionWrapper";
 
@@ -34,6 +35,7 @@ const Contact = () => {
             LinkedIn profile
           </a>.
         </p>
+        <ScopingEmail />
       </Card>
     </SectionWrapper>
   );
