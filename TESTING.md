@@ -56,3 +56,20 @@ This is a static React site: Vite/Tailwind process source into `dist`, and the b
 ## Publishing
 
 Changes are for founder review on `brainer/work`, not deployed. The founder reviews and merges the pull request, then deploys using their existing hosting process. No new environment variables or hosting settings are needed. Service availability is not asserted; contact copy invites a discussion of fit, scope, and availability.
+
+## Project context and navigation — milestone 2
+
+### Evidence used
+
+- `src/components/Certifications.tsx` and `public/resume.pdf` both describe the handwritten-digit project, a team of two, Otsu's method, a Multi-Layer Perceptron, and Anupam's J2SE GUI contribution. Moved that record from certificates into Projects & Practice; retained the recorded organisation and dates as résumé context. Did not repeat the accuracy percentage: no dataset, evaluation procedure, code, or demo is supplied. Did not extend the résumé's B.Tech wording into a degree claim.
+- This repository supports the portfolio's React, TypeScript, Tailwind CSS, Vite, and static single-page context. Linked its existing public GitHub repository for direct source review.
+- `src/components/About.tsx` establishes Hack The Box/TryHackMe as lab practice. No personal lab-profile URL is supplied, so none was guessed. Existing LinkedIn URL is reused for professional background.
+- Personal/academic work and learning practice are distinguished from the existing professional Experience section. No client case study, assessment outcome, new credential, target detail, or public exploit was added. Existing experience, acknowledgements, brand assets, contact positioning, and dependency lockfile are preserved.
+
+### Verification
+
+- `npm ci`, `npm run build` (including TypeScript checks), `npm run lint`, and `git diff --check`: pass. Install audit reports 0 vulnerabilities. No automated test suite is configured.
+- Production preview checked at 375 × 812, 768 × 1024, and 1440 × 900: no horizontal overflow, broken images, or unresolved fragment links. Desktop project cards display side by side; mobile cards stack with readable wrapping.
+- Desktop Projects link reaches `#projects`. Mobile menu opens with Enter, exposes Projects, and closes after keyboard selection. New source link receives keyboard focus with a visible outline. Existing contact route and navigation remain unchanged; no message sent.
+- Public portfolio source, local résumé PDF, and existing Lunacal destination return HTTP 200 (Lunacal redirects to `https://lunacal.ai/`). LinkedIn returns HTTP 999 to automated requests; retained the existing URL and recommend a normal-browser check before publishing.
+- Changes remain on `brainer/work` for the existing pull request. No deploy or merge was performed; no hosting configuration or new environment keys are required.
