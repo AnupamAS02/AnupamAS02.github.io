@@ -12,19 +12,44 @@ const Contact = () => {
           Let’s discuss your security needs.
         </h3>
         <p className="text-subtle max-w-[700px] leading-relaxed">
-          For product-team enquiries, share a brief overview of your web
-          application or API, your goals, and your preferred timeframe. We can
-          discuss whether my experience is a fit and confirm availability.
-          I’m also open to cybersecurity role enquiries.
+          Have a web application or API security question? A first conversation
+          can help clarify whether my experience is a fit. Scope and availability
+          still need to be discussed. I’m also open to cybersecurity role enquiries.
         </p>
-        <div className="border-l-4 border-accent pl-5 text-subtle max-w-[700px] leading-relaxed">
-          <p>
-            Testing begins only with written authorisation from the system owner
-            and an agreed scope, including permitted systems, methods, and timing.
-            Please don’t send credentials, sensitive data, or vulnerability details
-            in your first email.
-          </p>
-        </div>
+        <section aria-labelledby="enquiry-readiness-title" className="w-full max-w-[700px] border-l-4 border-accent pl-5">
+          <h3 id="enquiry-readiness-title" className="text-xl font-bold mb-5">Before you get in touch</h3>
+          <div className="flex flex-col gap-5 text-subtle leading-relaxed">
+            <div>
+              <h4 className="font-semibold text-foreground">Bring a general outline</h4>
+              <p>
+                Describe the product type, what you want to understand, your
+                preferred timeframe, and your connection to the system owner.
+                It’s fine if some details are still undecided.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-foreground">Agree boundaries before testing</h4>
+              <p>
+                Any testing requires written authorisation from the system owner
+                and an agreed scope: permitted systems and environments, methods,
+                exclusions, timing, and a contact if testing needs to stop.
+                An enquiry is not permission to test.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-foreground">Keep ordinary email non-sensitive</h4>
+              <p>
+                Don’t send passwords, API keys, customer data, private target URLs,
+                vulnerability details, or authorisation documents. First discuss
+                an appropriate secure way to share anything sensitive.
+              </p>
+            </div>
+          </div>
+        </section>
+        <p className="text-subtle max-w-[700px] leading-relaxed">
+          Email a short outline, or use the optional draft helper below to prepare
+          and review it before sending.
+        </p>
         <Button href="mailto:theanupamsingh01@gmail.com" className="w-fit text-base h-12 px-8 font-semibold">
           Email Anupam
         </Button>
