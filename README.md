@@ -21,6 +21,10 @@ npm run preview
 Preview serves the production `dist` output. Do not publish the repository root:
 its `index.html` references `/src/main.tsx`, which static GitHub Pages cannot run.
 The built HTML references compiled `/assets/*.js` and includes public assets.
+The startup fallback links to `/public/resume.pdf`: that is the tracked source path
+when Pages serves the repository root. Vite normally flattens `public/` into
+`dist/`, so the build also copies the résumé to `dist/public/resume.pdf` for this
+same fallback URL. The full portfolio's existing `/resume.pdf` link remains intact.
 
 ## Publish on the existing GitHub Pages host (owner only)
 

@@ -207,6 +207,39 @@ not `main / (root)`. After Pages completes, confirm live HTML uses `/assets/*.js
 and the full portfolio renders. These steps are also in README.
 Nothing is live from this correction until the owner merges and publishes it.
 
+### Fallback résumé compatibility and PR restoration — task 9 reopened
+
+The public page currently serves the static fallback from repository-root Pages:
+its `/resume.pdf` link returns 404, while the tracked PDF is under `public/`.
+The existing portfolio fallback, boundary and publishing changes are present in
+merged `main`; the previous branch commit with the URL fix was not present on the
+current PR branch. PR #6 was open with one README-only commit (`0ccf9d5`), so this
+follow-up restores the fix on top of that README change rather than replacing it.
+
+- Changed the static fallback PDF link to `/public/resume.pdf`. The build keeps
+  Vite's normal flattened `/resume.pdf` for full-app links and copies the same
+  tracked résumé to `dist/public/resume.pdf` for the fallback URL.
+- Added build checks for both production file paths, byte-for-byte equality with
+  `public/resume.pdf`, and all fallback identity, PDF, LinkedIn, GitHub, email,
+  authorisation and scope links.
+- `npm ci`, lint, production build/TypeScript, production and metadata checks,
+  and `git diff --check` pass. The existing Node 26 deprecation warning is
+  non-failing.
+- Local repository-root static serving: `/public/resume.pdf` is HTTP 200,
+  `application/pdf`; `/resume.pdf` is 404, as expected in that layout. Browser
+  snapshot shows fallback content and the four original destinations.
+- Static production preview: `/public/resume.pdf` and `/resume.pdf` both return
+  HTTP 200, `application/pdf`, 71,965 bytes; all three copies are identical.
+  Browser preview displays the full portfolio, with fallback hidden after app
+  startup, and retains the app's existing résumé links.
+- Live public host check: `/public/resume.pdf` returns HTTP 200 PDF and old
+  `/resume.pdf` returns 404; GitHub source link returns 200. LinkedIn automated
+  request returns HTTP 999, so normal-browser availability is not claimed. The
+  email destination is preserved; no email application was launched.
+- No `npm run deploy` or merge was performed. This test doesn't claim the public
+  page has changed: the founder must review and merge the updated PR and then
+  run `npm run deploy` from `main`, with Pages set to `gh-pages / (root)`.
+
 ## Enquiry readiness — task 10
 
 - Added “Before you get in touch” within the existing contact card, retaining its approved navy/green styling. Three short subsections cover general product/goal/timeframe/owner context; written owner authorisation and agreed systems, environments, methods, exclusions, timing and stop contact; and information not to send through ordinary email. The next step leads to the unchanged email address and optional draft helper. No new service, availability, credential, engagement, price or delivery claims.

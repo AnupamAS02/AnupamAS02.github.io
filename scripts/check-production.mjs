@@ -13,9 +13,12 @@ for (const url of entries) {
 const fallback = html.match(/<section id="portfolio-fallback"[\s\S]*?<\/section>/)?.[0];
 assert(fallback, "Independent static fallback is required");
 assert(!/^<section[^>]*\bhidden\b/.test(fallback), "Fallback must be visible before app startup");
-for (const value of ["Anupam Singh", "mailto:theanupamsingh01@gmail.com", "/resume.pdf", "https://www.linkedin.com/in/anupamas02/", "written authorisation", "agreed scope"]) {
-  assert(fallback.includes(value), `Missing fallback content: ${value}`);
+for (const value of ["Anupam Singh", "mailto:theanupamsingh01@gmail.com", "/public/resume.pdf", "https://www.linkedin.com/in/anupamas02/", "https://github.com/AnupamAS02/AnupamAS02.github.io", "written authorisation", "agreed scope"]) {
+  assert(fallback.includes(value), `Missing fallback content or destination: ${value}`);
 }
-assert(existsSync("dist/resume.pdf"));
+assert(existsSync("public/resume.pdf"), "Repository-root fallback résumé must exist");
+assert(existsSync("dist/resume.pdf"), "Existing portfolio résumé URL must remain available in production");
+assert(existsSync("dist/public/resume.pdf"), "Fallback résumé URL must be available in production");
+assert.deepEqual(readFileSync("public/resume.pdf"), readFileSync("dist/public/resume.pdf"), "Fallback résumé must match between repository and production output");
 assert(existsSync("dist/logo.svg"));
-console.log("Production entry assets and independent identity/evidence/contact fallback: pass");
+console.log("Production entry, dual-path résumé, evidence and contact fallback: pass");
