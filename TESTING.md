@@ -132,3 +132,87 @@ Verification:
 - Clipboard API success and rejection were exercised with browser test doubles: successful copy exactly matches the preview including To/Subject; rejection selects the entire preview and focuses it. Native OS clipboard/email-client integration varies and was not claimed as tested; no email was sent and no external mail app was launched.
 - Browser resource count remained 18 before and after editing/copy testing/resizing; localStorage and sessionStorage remained empty. Reload clears entered answers. Source review confirms no input network or persistence path and no HTML interpretation of input. No backend or third-party service is involved.
 - Updated only `brainer/work` for the existing review PR. No merge/deploy, environment keys, hosting changes or migration required. Founder reviews/merges and publishes using their existing process.
+
+## Public rendering path repair — task 9
+
+### Root cause and correction
+
+Public HTTP inspection found repository-source HTML with an empty `#root` and
+`<script type="module" src="/src/main.tsx">`. That TSX response had
+`application/octet-stream` MIME and uncompiled imports/JSX. GitHub Pages is a
+static host, not Vite: the source entry cannot execute. This explains the correct
+title with blank body; it is not evidence of a failure in the production bundle.
+
+- Hardened the owner's existing `npm run deploy`/`gh-pages` process: predeploy
+  builds and checks the compiled entry and static fallback, in addition to the
+  existing metadata/assets checks. README specifies publishing `dist` and selecting
+  `gh-pages / (root)`. Never serve `main / (root)` directly.
+- An initial attempt to include a build/artifact Pages workflow was rejected on
+  push: the connected GitHub App lacks `workflows` permission. Removed that
+  unpushed workflow and kept the existing owner-operated publishing process.
+  No new hosting or app permissions are required for the shipped correction.
+- Added independently styled static identity, résumé/profile/source links and
+  unchanged email with authorisation guidance. It is initially visible, works
+  without application JavaScript, and is hidden only after a successful React
+  commit. A React boundary restores it if a component fails to render. No
+  duplicate visible fallback after normal startup.
+- Preserved all reviewed design, evidence, metadata, assets, navigation and
+  private email-helper improvements. No new dependency, secret or migration.
+
+### Verification
+
+`npm ci` (zero audit findings), `npm run lint`, `npm run build` (TypeScript),
+`npm run check:production` (entry asset/fallback and existing metadata checks),
+and `git diff --check` pass. The known Node deprecation warning is non-failing.
+Local commands ran on the workspace's Node 26. Actual GitHub Pages publishing
+was not run by the team and awaits the owner's publish command and Pages setting.
+
+Production `vite preview` at 320, 375, 768 and 1440px: full identity, experience,
+projects, credentials, contact and helper render; fallback hidden, no horizontal
+overflow or broken images. Opening the optional helper still reveals its fields
+and draft. Keyboard Enter opens the mobile menu; Contact closes it and focuses
+`#contact`. Existing direct mailto is unchanged; no email sent.
+
+Three failure checks used temporary files/servers outside tracked source:
+
+1. Serve `dist` via a Python static handler that returns 503 for `.js` requests:
+   the identity, evidence links, email and permission guidance remain visible.
+   Phone visual review confirms readable fallback and no sideways overflow.
+2. Build a separate temporary Vite output with an `enforce: 'pre'` transform of
+   `src/App.tsx` to `export default function App() { throw new Error('test'); }`:
+   compiled application startup reaches the React error boundary, leaves the
+   root empty and restores the independent HTML fallback. The real production
+   bundle is not modified by this test.
+3. Serve a temporary copy of production HTML with script tags removed: there are
+   zero scripts and visible identity/contact/evidence at 320, 768 and 1440px,
+   without overflow. Keyboard Tab reaches profile/evidence links. This tests
+   no-script rendering, not a claim about a browser-settings toggle.
+
+All temporary test files are excluded from the final build. Tests did not launch
+an email client, send data, or exercise real external delivery.
+
+### Review and owner publishing handoff
+
+Fetched and fast-forwarded `origin/main` before editing: previous reviewed
+improvements (including task 8) were already merged. GitHub's public PR API shows
+PRs #1, #2 and #3 all closed/merged, with no open review PR at inspection; PR #3
+merged on 26 November. That explains the absent previous Needs you card. This
+new `brainer/work` commit needs a fresh automatic review PR from Brainer; the team
+does not open or merge PRs manually.
+
+Owner: review and merge the new PR. In an authenticated local clone, check out
+and pull `main`, then run `npm ci`, `npm run lint`, and `npm run deploy`.
+In **Settings → Pages**, select **Deploy from a branch → gh-pages → / (root)**,
+not `main / (root)`. After Pages completes, confirm live HTML uses `/assets/*.js`
+and the full portfolio renders. These steps are also in README.
+Nothing is live from this correction until the owner merges and publishes it.
+
+## Enquiry readiness — task 10
+
+- Added “Before you get in touch” within the existing contact card, retaining its approved navy/green styling. Three short subsections cover general product/goal/timeframe/owner context; written owner authorisation and agreed systems, environments, methods, exclusions, timing and stop contact; and information not to send through ordinary email. The next step leads to the unchanged email address and optional draft helper. No new service, availability, credential, engagement, price or delivery claims.
+- The task checkout initially pointed to `18038b8`, missing the previous rendering-fix commit. Recovered `b9d3d842f1b78c5f0a753bdd7f7afff73a5a7b6a` from GitHub and fast-forwarded `brainer/work` to it before editing. Its fallback, startup boundary, build checks and publishing instructions are retained unchanged. Fetched and merged `origin/main` before work and again before push (already up to date).
+- `npm ci` (zero audit findings), `npm run lint`, `npm run build` (TypeScript included), `npm run check:production`, metadata script and `git diff --check`: pass. Existing Node deprecation warning is non-failing. No general automated component-test framework is configured.
+- Local production preview at 320×812, 375×812, 768×1024 and 1440×1000 with helper expanded: no horizontal overflow, broken loaded images or missing fragment targets. Phone visual review confirms the new heading and body copy wrap readably within the existing contact card.
+- Keyboard: skip link has visible focus and Enter focuses main; desktop Contact focuses the contact section. Mobile Enter opens menu, Escape closes it and restores toggle focus; Contact selection closes menu and focuses contact. Native helper summary opens with Enter. Tab traverses its four fields, review draft, email-app link and copy button in order; each has a solid 3px focus outline.
+- Updated helper answers appear in the reviewable draft and the decoded mailto body matches it. The original plain `mailto:theanupamsingh01@gmail.com` remains unchanged. Local/session storage remain empty. No email sent or external email application launched; native delivery/clipboard integration and live deployment are not claimed as tested in this task.
+- Pushed only to `brainer/work`. No merge, deployment, hosting configuration, new keys or migration. Founder review/merge and existing README publishing steps are still required before this reaches the public site.
