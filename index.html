@@ -33,7 +33,11 @@
       #portfolio-fallback ul { padding-left: 1.25rem; }
       #portfolio-fallback li { margin: .75rem 0; }
       #portfolio-fallback a { color: #22c55e; overflow-wrap: anywhere; text-underline-offset: .2em; }
-      #portfolio-fallback a:focus-visible { outline: 2px solid #22c55e; outline-offset: 4px; }
+      #portfolio-fallback :is(a, summary, textarea):focus-visible { outline: 2px solid #22c55e; outline-offset: 4px; }
+      #portfolio-fallback summary { cursor: pointer; padding: .75rem 0; }
+      #portfolio-fallback label { display: block; margin: 1rem 0 .5rem; font-weight: 600; }
+      #portfolio-fallback textarea { box-sizing: border-box; width: 100%; padding: 1rem; border: 1px solid #334155; border-radius: .5rem; background: #f8fafc; color: #0f172a; font: inherit; resize: vertical; }
+      #portfolio-fallback .scoping-action { display: inline-block; padding: .75rem 1rem; border-radius: .5rem; background: #22c55e; color: #0f172a; font-weight: 600; }
       @media (max-width: 40rem) { #portfolio-fallback { margin: 1rem; padding: 1.5rem; } }
     </style>
     <section id="portfolio-fallback" aria-labelledby="fallback-title">
@@ -46,8 +50,35 @@
         <li><strong>Personal project · Cybersecurity portfolio.</strong> This responsive, single-page site is built with React and TypeScript, with Vite for its build. <a href="https://github.com/AnupamAS02/AnupamAS02.github.io">Review the public source on GitHub</a>.</li>
         <li><strong>Academic research project · Handwritten digit recognition, team of two.</strong> The project used Otsu’s method and a Multi-Layer Perceptron; my contribution was the Java (J2SE) graphical interface. <a href="/public/resume.pdf">Read the project summary in my résumé (PDF)</a>. The résumé provides a summary; no public code repository or demo is listed.</li>
       </ul>
+      <h2 id="fallback-contact">Before you get in touch</h2>
+      <p>A first conversation can help clarify whether my experience is a fit. Scope and availability still need to be discussed. Open a scoping email, then edit the outline in your email app before sending.</p>
+      <ul>
+        <li><strong>Bring a general outline.</strong> Describe the product type, what you want to understand, your preferred timeframe, and your connection to the system owner. It’s fine if some details are still undecided.</li>
+        <li><strong>Agree boundaries before testing.</strong> Any testing requires written authorisation from the system owner and an agreed scope: permitted systems and environments, methods, exclusions, timing, and a contact if testing needs to stop. An enquiry is not permission to test.</li>
+        <li><strong>Keep ordinary email non-sensitive.</strong> Don’t send passwords, API keys, customer data, private target URLs, vulnerability details, or authorisation documents. First discuss an appropriate secure way to share anything sensitive.</li>
+      </ul>
+      <details>
+        <summary>Review a scoping email outline (optional)</summary>
+        <label for="fallback-scoping-draft">Scoping email outline</label>
+        <textarea id="fallback-scoping-draft" rows="14" readonly aria-describedby="fallback-scoping-help">To: theanupamsingh01@gmail.com
+Subject: Web / API security scoping enquiry
+
+Hi Anupam,
+
+I'd like to discuss whether an authorised security assessment is a fit for our product team.
+
+Product type: To discuss
+Assessment goal: To discuss
+Preferred timeframe: To discuss
+Authorisation context: To discuss
+
+I understand that testing requires written authorisation from the system owner and an agreed scope. This enquiry does not authorise testing.
+
+Could we discuss fit, scope, and availability?</textarea>
+        <p id="fallback-scoping-help">Edit the outline in your email app using general, non-sensitive context. Nothing is sent until you send it yourself. If the link does not open a complete draft, select and copy this outline into your email app.</p>
+      </details>
+      <p><a class="scoping-action" href="mailto:theanupamsingh01@gmail.com?subject=Web%20%2F%20API%20security%20scoping%20enquiry&amp;body=Hi%20Anupam%2C%0A%0AI'd%20like%20to%20discuss%20whether%20an%20authorised%20security%20assessment%20is%20a%20fit%20for%20our%20product%20team.%0A%0AProduct%20type%3A%20To%20discuss%0AAssessment%20goal%3A%20To%20discuss%0APreferred%20timeframe%3A%20To%20discuss%0AAuthorisation%20context%3A%20To%20discuss%0A%0AI%20understand%20that%20testing%20requires%20written%20authorisation%20from%20the%20system%20owner%20and%20an%20agreed%20scope.%20This%20enquiry%20does%20not%20authorise%20testing.%0A%0ACould%20we%20discuss%20fit%2C%20scope%2C%20and%20availability%3F">Open scoping email in your email app</a></p>
       <p>For product-team or cybersecurity role enquiries, email <a href="mailto:theanupamsingh01@gmail.com">theanupamsingh01@gmail.com</a> with a brief overview of your goals and preferred timeframe.</p>
-      <p>Testing begins only with written authorisation from the system owner and an agreed scope. Please don’t send credentials, sensitive data, or vulnerability details in your first email.</p>
     </section>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

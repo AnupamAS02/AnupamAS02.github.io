@@ -63,7 +63,10 @@ works without adding workflow permissions or changing hosts.
 ## Startup resilience
 
 `index.html` contains a readable static identity, résumé/profile/source links,
-and the existing email contact with authorisation guidance. It remains usable
+and the existing email contact with authorisation guidance. Its scoping email
+link opens a prepared outline to edit in the visitor's email app, alongside a
+selectable copy of the outline and the unchanged plain email alternative. The
+static page collects no answers and needs no helper JavaScript. It remains usable
 without JavaScript or when an application asset fails to load. React hides it only
 after a successful commit; a rendering error boundary restores it on component
 failure. This is not a substitute for publishing a production build.

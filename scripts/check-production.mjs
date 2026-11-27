@@ -31,9 +31,35 @@ function checkFallback(document, label) {
     "Otsu’s method and a Multi-Layer Perceptron",
     "Java (J2SE) graphical interface",
     "no public code repository or demo is listed",
+    'id="fallback-contact"',
+    "Before you get in touch",
+    "product type, what you want to understand, your preferred timeframe, and your connection to the system owner",
+    "permitted systems and environments, methods, exclusions, timing, and a contact if testing needs to stop",
+    "An enquiry is not permission to test.",
+    "passwords, API keys, customer data, private target URLs, vulnerability details, or authorisation documents",
+    "Scope and availability still need to be discussed.",
   ]) {
     assert(fallback.includes(value), `${label}: missing fallback content or destination: ${value}`);
   }
+  assert(fallback.includes('href="mailto:theanupamsingh01@gmail.com"'), `${label}: preserve the plain email alternative`);
+  const draft = fallback.match(/<textarea id="fallback-scoping-draft"[^>]*\breadonly\b[^>]*>([\s\S]*?)<\/textarea>/)?.[1];
+  assert(draft, `${label}: selectable email outline must work without JavaScript`);
+  assert(fallback.includes('for="fallback-scoping-draft"'), `${label}: outline needs a visible label`);
+  const encodedMailto = fallback.match(/class="scoping-action" href="([^"]+)"/)?.[1];
+  assert(encodedMailto, `${label}: static scoping email link is required`);
+  const mailto = new URL(encodedMailto.replaceAll("&amp;", "&"));
+  assert.equal(mailto.protocol, "mailto:");
+  assert.equal(mailto.pathname, "theanupamsingh01@gmail.com");
+  assert.equal(mailto.searchParams.get("subject"), "Web / API security scoping enquiry");
+  const body = mailto.searchParams.get("body");
+  assert.equal(draft, `To: ${mailto.pathname}\nSubject: ${mailto.searchParams.get("subject")}\n\n${body}`, `${label}: mailto must match the reviewable outline`);
+  for (const field of ["Product type", "Assessment goal", "Preferred timeframe", "Authorisation context"]) {
+    assert(body.includes(`${field}: To discuss`), `${label}: missing non-sensitive context: ${field}`);
+  }
+  assert(body.includes("This enquiry does not authorise testing."));
+  assert(body.includes("written authorisation from the system owner and an agreed scope"));
+  assert(body.includes("Could we discuss fit, scope, and availability?"));
+  assert(!/<(?:form|input|script)\b/i.test(fallback), `${label}: static outline must not collect or transmit visitor input`);
 }
 checkFallback(sourceHtml, "Repository-root source");
 checkFallback(html, "Production build");
