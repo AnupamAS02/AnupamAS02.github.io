@@ -21,7 +21,7 @@ const Navbar = () => {
       }} className="max-w-[1200px] mx-auto px-6 sm:px-10 py-4 flex flex-wrap items-center justify-between gap-4">
         <a href="#top" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 font-bold text-sm sm:text-base">
           <img src="/logo.svg" alt="" className="w-9 h-9 bg-white rounded p-1" />
-          AnupamAS02.github.io
+          Anupam Singh
         </a>
         <button
           ref={menuButton}
