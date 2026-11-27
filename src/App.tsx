@@ -21,7 +21,7 @@ const App = () => {
       </main>
       <footer className="border-t border-secondary">
         <div className="max-w-[1200px] mx-auto px-6 sm:px-10 py-8 font-mono text-xs text-subtle flex flex-wrap justify-between gap-4">
-          <span>AnupamAS02.github.io</span>
+          <span>Anupam Singh</span>
           <a href="#top" className="text-accent hover:underline">↑ back_to_top</a>
         </div>
       </footer>

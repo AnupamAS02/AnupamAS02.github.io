@@ -10,12 +10,12 @@ function meta(attribute, key) {
   return matches[0][1];
 }
 assert.match(html, /<html lang="en">/);
-assert.match(html, /<title>Anupam Singh \| Cybersecurity Portfolio \| AnupamAS02.github.io<\/title>/);
+assert.match(html, /<title>Anupam Singh \| Cybersecurity Portfolio<\/title>/);
 assert.equal((html.match(/rel="canonical"/g) || []).length, 1);
 assert.ok(html.includes(`rel="canonical" href="${origin}/"`));
 assert.match(meta("name", "description"), /Anupam Singh/);
 assert.equal(meta("property", "og:type"), "website");
-assert.equal(meta("property", "og:site_name"), "AnupamAS02.github.io");
+assert.equal(meta("property", "og:site_name"), "Anupam Singh");
 assert.equal(meta("property", "og:url"), `${origin}/`);
 assert.equal(meta("name", "twitter:card"), "summary_large_image");
 for (const key of ["title", "description", "image", "image:alt"]) {
