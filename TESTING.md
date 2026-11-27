@@ -253,3 +253,11 @@ follow-up restores the fix on top of that README change rather than replacing it
 ## Task 7 — personal-name correction
 
 Header and footer now display Anupam Singh; the home link accessible name matches. Updated title, social site name, image description, no-JavaScript fallback branding and social-preview artwork consistently. Logo, visual design and real repository/canonical/contact URLs remain unchanged. Responsive browser verification at 320, 375, 768 and 1440px confirms both names, no old domain-style visible name and no horizontal overflow. Desktop and mobile screenshots captured. Build, lint, production checks, metadata and diff checks pass.
+
+## Project evidence in the static fallback — task 12
+
+- Added clear fallback paths to two existing records. The personal portfolio project links directly to its public GitHub source and is described as a responsive React/TypeScript single-page site built with Vite. The academic team-of-two digit-recognition project is summarized with its recorded Otsu method, Multi-Layer Perceptron, and Anupam's Java (J2SE) GUI contribution; its résumé link states that a summary is available, with no public code repository or demo listed. Both are explicitly separated from client security assessments.
+- Retained the fallback identity, résumé URL `/public/resume.pdf`, LinkedIn profile, direct email, and written-authorisation/agreed-scope guidance. React app source and the full portfolio were not changed.
+- Expanded `scripts/check-production.mjs` to verify the visible fallback's identity, project descriptions and links, personal/academic/client distinction, résumé, contact and authorisation copy in both `index.html` and `dist/index.html`; existing checks still verify the compiled app entry and both résumé output paths.
+- `npm ci` (0 reported vulnerabilities), `npm run lint`, `npm run build` (including TypeScript), `npm run check:production`, and `git diff --check` pass. Local static HTTP checks confirm both source-root and production preview serve the project evidence and permission guidance. `/public/resume.pdf` returns HTTP 200 `application/pdf` from both paths.
+- No public-site deploy or merge was performed. The change remains for founder review on `brainer/work`; review, merge, and the existing owner-operated publishing process are still required.

@@ -28,7 +28,10 @@
       #portfolio-fallback { box-sizing: border-box; max-width: 48rem; margin: 3rem auto; padding: 2rem; background: #0f172a; color: #f8fafc; font: 1rem/1.6 system-ui, sans-serif; border: 1px solid #334155; border-radius: 1rem; }
       #portfolio-fallback[hidden] { display: none; }
       #portfolio-fallback h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 1rem 0; }
+      #portfolio-fallback h2 { font-size: 1.25rem; line-height: 1.3; margin: 1.75rem 0 .5rem; }
       #portfolio-fallback p { margin: 1rem 0; }
+      #portfolio-fallback ul { padding-left: 1.25rem; }
+      #portfolio-fallback li { margin: .75rem 0; }
       #portfolio-fallback a { color: #22c55e; overflow-wrap: anywhere; text-underline-offset: .2em; }
       #portfolio-fallback a:focus-visible { outline: 2px solid #22c55e; outline-offset: 4px; }
       @media (max-width: 40rem) { #portfolio-fallback { margin: 1rem; padding: 1.5rem; } }
@@ -36,7 +39,13 @@
     <section id="portfolio-fallback" aria-labelledby="fallback-title">
       <p>Anupam Singh · Cybersecurity portfolio</p>
       <h1 id="fallback-title">Anupam Singh</h1>
-      <p>My focus is web application and API security. Explore my background and project record in my <a href="/public/resume.pdf">résumé (PDF)</a>, <a href="https://www.linkedin.com/in/anupamas02/">LinkedIn profile</a>, and <a href="https://github.com/AnupamAS02/AnupamAS02.github.io">portfolio source</a>.</p>
+      <p>My focus is web application and API security. Explore my background in my <a href="/public/resume.pdf">résumé (PDF)</a> and <a href="https://www.linkedin.com/in/anupamas02/">LinkedIn profile</a>.</p>
+      <h2 id="fallback-projects">Project records</h2>
+      <p>These personal and academic projects are not client security assessments.</p>
+      <ul>
+        <li><strong>Personal project · Cybersecurity portfolio.</strong> This responsive, single-page site is built with React and TypeScript, with Vite for its build. <a href="https://github.com/AnupamAS02/AnupamAS02.github.io">Review the public source on GitHub</a>.</li>
+        <li><strong>Academic research project · Handwritten digit recognition, team of two.</strong> The project used Otsu’s method and a Multi-Layer Perceptron; my contribution was the Java (J2SE) graphical interface. <a href="/public/resume.pdf">Read the project summary in my résumé (PDF)</a>. The résumé provides a summary; no public code repository or demo is listed.</li>
+      </ul>
       <p>For product-team or cybersecurity role enquiries, email <a href="mailto:theanupamsingh01@gmail.com">theanupamsingh01@gmail.com</a> with a brief overview of your goals and preferred timeframe.</p>
       <p>Testing begins only with written authorisation from the system owner and an agreed scope. Please don’t send credentials, sensitive data, or vulnerability details in your first email.</p>
     </section>
