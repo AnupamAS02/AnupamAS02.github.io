@@ -1,6 +1,10 @@
-# AnupamAS02.github.io
+# Anupam Singh — Cybersecurity Portfolio
 
-Anupam Singh’s React/TypeScript cybersecurity portfolio, built with Vite.
+My cybersecurity focus is web application and API security. This portfolio brings together my background and project record for product teams considering a conversation about their security needs.
+
+Visit the [portfolio](https://anupamas02.github.io/) and [contact me through its contact section](https://anupamas02.github.io/#contact), or email [Anupam](mailto:theanupamsingh01@gmail.com).
+
+Any testing requires written authorisation from the system owner and an agreed scope. An enquiry is not permission to test; fit, scope, and availability need to be discussed.
 
 ## Local checks
 
