@@ -110,4 +110,21 @@ source revisions. Vite's additional HTML entry preserves the same URL in `dist`;
 it is also readable when serving the repository root. `npm run check:production`
 checks both versions and the evidence-entry links. No publishing steps change.
 
+## Private assessment preparation
+
+[`readiness.html`](readiness.html) is a small web/API assessment-preparation helper,
+linked from the full portfolio’s contact section and static fallback. Five fixed-choice
+questions produce tailored, copyable next steps; no targets, credentials or findings
+are requested. Choices remain in React memory only, with no storage, tracking,
+network submission or answer-bearing URLs. Clear answers, reload and page navigation
+(including back/forward restoration) reset them. Clipboard transfer is explicit and
+has a selectable plain-text fallback. This does not change the existing enquiry helper
+or contact route, and it does not authorise testing or confirm service availability.
+
+The same page includes an independent, selectable five-area checklist when JavaScript
+is disabled or fails to load. Vite builds it as an additional HTML entry, so the existing
+owner-controlled publishing process includes it automatically. No new dependencies,
+environment keys, backend or hosting settings are needed. Its pure rule tests cover all
+1,024 answer combinations and run as part of `npm run check:production` after the build.
+
 See `TESTING.md` for verification and known external-link limitations.

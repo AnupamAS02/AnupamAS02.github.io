@@ -47,6 +47,9 @@ const Contact = () => {
           </div>
         </section>
         <p className="text-subtle max-w-[700px] leading-relaxed">
+          Still working out the details? <a href="/readiness.html" className="underline underline-offset-4">Check your assessment preparation</a> for private, practical next steps on ownership, scope, environment, access and timing.
+        </p>
+        <p className="text-subtle max-w-[700px] leading-relaxed">
           Email a short outline, or use the optional draft helper below to prepare
           and review it before sending.
         </p>

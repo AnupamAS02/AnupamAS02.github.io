@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="canonical" href="https://anupamas02.github.io/readiness.html" />
+    <meta name="description" content="Privately prepare for a web or API assessment conversation. Clarify ownership, scope, environment, access and timing without entering sensitive details." />
+    <title>Assessment preparation | Anupam Singh</title>
+    <style>
+      * { box-sizing: border-box; }
+      :root { color-scheme: light; font: 100%/1.65 system-ui, sans-serif; color: #0f172a; background: #f8fafc; }
+      body { margin: 0; }
+      a { color: #0f172a; text-underline-offset: .2em; }
+      a:hover { text-decoration-thickness: 2px; }
+      header, main, footer { width: min(100% - 3rem, 68rem); margin-inline: auto; }
+      header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; border-bottom: 1px solid #334155; }
+      header a { padding-block: .5rem; }
+      .identity { font-weight: 750; text-decoration: none; }
+      main { padding-block: 3.5rem; }
+      h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.12; letter-spacing: -.04em; max-width: 19ch; margin: .75rem 0 1.25rem; }
+      h2 { line-height: 1.25; font-size: 1.5rem; }
+      h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+      p { max-width: 70ch; }
+      .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; font-weight: 750; color: #334155; }
+      .intro { max-width: 48rem; font-size: 1.125rem; }
+      .notice { border-left: 4px solid #22c55e; padding: .5rem 1.25rem; margin-block: 2rem; background: #ffffff; }
+      .notice p { margin-block: .5rem; }
+      .work-area { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; gap: 2.5rem; align-items: start; margin-top: 2.5rem; }
+      .panel { min-width: 0; border: 1px solid #334155; border-radius: .75rem; background: #ffffff; padding: 1.5rem; }
+      .panel h2:first-child { margin-top: 0; }
+      aside { color: #334155; font-size: .9375rem; overflow-wrap: anywhere; }
+      aside h2 { color: #0f172a; font-size: 1.125rem; }
+      fieldset { padding: 1.25rem 0; border: 0; border-bottom: 1px solid #334155; margin: 0 0 1.5rem; min-width: 0; }
+      legend { font-weight: 750; padding: 0; }
+      fieldset p { margin: 0 0 1rem; color: #334155; }
+      .choices { display: flex; flex-wrap: wrap; gap: .5rem; }
+      .choice { display: flex; align-items: center; gap: .5rem; border: 1px solid #334155; border-radius: .375rem; padding: .65rem .75rem; min-height: 48px; cursor: pointer; }
+      .choice:has(input:checked) { background: #0f172a; color: #ffffff; }
+      input { accent-color: #22c55e; width: 1.1rem; height: 1.1rem; margin: 0; }
+      button, textarea { font: inherit; }
+      button { border: 1px solid #0f172a; background: #22c55e; color: #0f172a; border-radius: .375rem; min-height: 48px; padding: .65rem 1rem; cursor: pointer; font-weight: 650; }
+      button.secondary { background: #ffffff; }
+      .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+      :is(a, button, input, textarea, summary):focus-visible { outline: 3px solid #0f172a; outline-offset: 4px; }
+      .skip { position: absolute; left: 1rem; top: -10rem; background: #ffffff; padding: .75rem; }
+      .skip:focus { top: 1rem; }
+      #preparation-results { margin-top: 2.5rem; scroll-margin-top: 1.5rem; }
+      #preparation-results h2:focus { outline: 2px solid #334155; outline-offset: 5px; }
+      ol { padding-left: 1.5rem; }
+      li { padding-left: .25rem; margin-block: 1.25rem; }
+      .status { color: #334155; font-size: .875rem; font-weight: 650; }
+      li p { margin-block: .3rem; }
+      textarea { display: block; width: 100%; background: #f8fafc; color: #0f172a; border: 1px solid #334155; border-radius: .375rem; padding: 1rem; resize: vertical; margin-block: 1rem; }
+      .copy-status { min-height: 1.65em; color: #334155; }
+      footer { padding-block: 1.5rem 2.5rem; border-top: 1px solid #334155; font-size: .875rem; color: #334155; }
+      [hidden] { display: none !important; }
+      @media (max-width: 52rem) { .work-area { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } main { padding-block: 2rem; } }
+      @media (max-width: 30rem) { header, main, footer { width: calc(100% - 2rem); } .panel { padding: 1rem; } .choices { flex-direction: column; } }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <a class="identity" href="/">Anupam Singh</a>
+      <a href="/#contact">Back to portfolio & contact</a>
+    </header>
+    <main id="main" tabindex="-1">
+      <p class="eyebrow">Web & API assessment preparation</p>
+      <h1>A clearer starting point for your team.</h1>
+      <p class="intro">Before requesting testing, check what your team understands and what still needs a conversation. Get practical preparation steps—not a verdict on your security.</p>
+      <div class="notice">
+        <p><strong>Preparation, not permission.</strong> This is not a security score, legal advice or permission to test. Any testing requires written authorisation from the system owner and an agreed scope. Fit and availability still need to be discussed.</p>
+      </div>
+      <div class="work-area">
+        <div>
+          <div id="readiness-root"></div>
+          <section class="panel" id="readiness-fallback" aria-labelledby="checklist-title">
+            <h2 id="checklist-title">Your preparation checklist</h2>
+            <p>Work through these questions with your team. You can select and copy this checklist for your own notes. If the interactive helper cannot load, this checklist covers the same preparation areas.</p>
+            <ol>
+              <li><strong>Ownership and authorisation.</strong> Identify the system owner, who can give written authorisation, and any third-party permissions needed. Confirm written authorisation for the agreed scope before testing.</li>
+              <li><strong>Intended scope.</strong> Outline the goal, broad web/API areas and exclusions internally. Agree precise systems, permitted methods and third-party boundaries through an appropriate secure channel before testing.</li>
+              <li><strong>Environment.</strong> Discuss the intended environment, live data, operational risks, recovery arrangements and stop conditions. Do not assume staging is isolated or production testing is acceptable.</li>
+              <li><strong>Access.</strong> Identify relevant user roles and dedicated test-account arrangements. Agree a secure way to provision access after scope is agreed; do not email credentials.</li>
+              <li><strong>Timing and coordination.</strong> Identify a preferred window, release constraints and coordination or emergency-stop contacts. Discuss availability before agreeing a schedule.</li>
+            </ol>
+          </section>
+        </div>
+        <aside class="panel" aria-labelledby="privacy-title">
+          <h2 id="privacy-title">Private by design</h2>
+          <p>The helper uses fixed choices only. Do not enter actual targets, credentials, findings, customer data or authorisation documents.</p>
+          <p>Your choices stay in this page’s memory. They are not saved, put in a link or sent to this site. Reloading, leaving the page or choosing “Clear answers” clears them.</p>
+          <p>Copying transfers only your preparation plan to your clipboard at your request. It does not send an enquiry.</p>
+          <h2>When you get in touch</h2>
+          <p>Share only general product context, your goal, connection to the owner and a preferred timeframe. Agree a secure channel before sharing anything sensitive.</p>
+          <a href="mailto:theanupamsingh01@gmail.com">Email Anupam</a>
+          <p>theanupamsingh01@gmail.com</p>
+        </aside>
+      </div>
+    </main>
+    <footer>Anupam Singh · Assessment preparation</footer>
+    <script type="module" src="/src/readiness.tsx"></script>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build && node scripts/copy-fallback-assets.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:production": "node scripts/check-production.mjs && node scripts/check-metadata.mjs && node scripts/check-project-detail.mjs",
+    "check:production": "node scripts/check-production.mjs && node scripts/check-metadata.mjs && node scripts/check-project-detail.mjs && node --test scripts/check-readiness.test.mjs",
     "check:publishing": "node --test scripts/check-publishing.test.mjs",
     "predeploy": "npm run build && npm run check:production",
     "deploy": "gh-pages -d dist"

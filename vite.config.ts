@@ -9,6 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
+        readiness: path.resolve(__dirname, "readiness.html"),
         portfolioProject: path.resolve(__dirname, "projects/cybersecurity-portfolio.html"),
       },
     },

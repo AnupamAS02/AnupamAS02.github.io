@@ -367,3 +367,59 @@ Header and footer now display Anupam Singh; the home link accessible name matche
 - No merge, deployment, settings change, workflow installation, new secret or
   migration. The owner reviews/merges the existing PR and publishes using the
   README's existing owner-operated process before any public-site change is live.
+
+## Task #16 — private web/API assessment preparation (28 November 2026)
+
+Prepared on `brainer/work`, preserving all pending owner-review changes. New page:
+`/readiness.html`, linked from the full contact section and static portfolio fallback.
+It uses the existing React/TypeScript/Vite toolchain and the approved navy/slate/green
+palette with light surfaces. No backend, new dependencies or publishing changes.
+
+### Automated checks
+
+- `npm ci`: passed; audit reported zero vulnerabilities.
+- `npm run check:publishing`: all 13 owner-publishing safeguard tests passed.
+- `npm run lint`, `npm run build`, `npm run check:production`: passed.
+- New production-check suite: 23 tests, including each of the four states (unanswered,
+  understood, needs clarification, not sure) in each of five areas; all 1,024 combined
+  answer states; unique five-step output; authorisation/privacy boundaries; immutable
+  rule input; static/source and built-page checklist, contact and entry links.
+- Source assertions reject storage/transmission/tracking APIs and sensitive input types;
+  verify pagehide/pageshow clearing and no third-party script/style dependencies.
+- Existing production entry, résumé, metadata, project-detail and publishing checks pass.
+
+### Production-preview browser checks
+
+Used the production build on localhost:4173, not the public site.
+
+- Empty review gives five useful starting actions rather than requiring an answer or
+  awarding a score. Mixed answers give clarification/contact actions and confirmation
+  reminders for understood areas. Changing an answer removes stale results/copy status.
+- Native radio controls respond to Space and arrow keys; Tab moves between groups.
+  Enter opens review; focus moves to the results heading. Controls and readonly plan
+  have descriptive labels; copy feedback uses a status region. No focus trap observed.
+- Copy succeeds on an explicit button action. Simulated clipboard permission denial
+  focuses and selects the entire 1,611-character mixed plan for manual copying, with
+  clear feedback. No enquiry is sent or email populated with readiness answers.
+- Clear answers removes selections/results; reload starts empty; navigating to the
+  existing portfolio contact section and going back starts empty. pagehide/pageshow
+  handlers also clear memory for back/forward cache restoration.
+- Browser resource entries remained the same three same-origin static assets during
+  answer/review interactions. Local storage and session storage remained empty;
+  cookies stayed empty; the page URL had no answers or query. No analytics added.
+- At 320, 390, 768 and 1280px: no horizontal overflow, and all choice labels/buttons
+  are at least 44px high. Phone and desktop visual checks passed.
+- A separate temporary server served the exact built HTML/assets with CSP
+  `script-src 'none'`. With helper execution blocked, the visible independent checklist
+  contains all five preparation areas and the existing email link, with no answer
+  collection controls. The static portfolio retains its new readiness link and existing
+  scoping outline/mailto route. This checks script-unavailable behaviour, not a claim
+  of cross-browser assistive-technology certification.
+
+### Owner review and publishing
+
+Review `/readiness.html` after `npm run build && npm run preview`. The change belongs
+in the existing owner-review PR; nothing is merged or published by the team. After
+owner merge, use the existing documented Pages publishing process. The new Vite HTML
+entry is included in `dist`; no new keys, migrations or host settings are required.
+The public page remains unverified until owner publishing.
