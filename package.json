@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check:production": "node scripts/check-production.mjs && node scripts/check-metadata.mjs",
+    "check:publishing": "node --test scripts/check-publishing.test.mjs",
     "predeploy": "npm run build && npm run check:production",
     "deploy": "gh-pages -d dist"
   },
@@ -35,6 +36,7 @@
     "globals": "^16.3.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.0",
-    "vite": "^7.1.0"
+    "vite": "^7.1.0",
+    "yaml": "^2.9.1"
   }
 }

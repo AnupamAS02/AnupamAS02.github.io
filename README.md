@@ -12,6 +12,7 @@ Use Node 22 or newer and the committed npm lockfile:
 
 ```sh
 npm ci
+npm run check:publishing
 npm run lint
 npm run build
 npm run check:production
@@ -28,37 +29,65 @@ same fallback URL. The full portfolio's existing `/resume.pdf` link remains inta
 
 ## Publish on the existing GitHub Pages host (owner only)
 
-The existing `npm run deploy` command publishes **only `dist`** to `gh-pages`.
-Its predeploy step builds and checks the production entry, identity/contact
-fallback, metadata, résumé, favicon and social image before publishing.
+Both options below publish **only the checked production `dist`**, including the
+full portfolio and static fallback. Merging alone does not publish the site.
+The team does not merge, change settings or deploy.
 
-1. Review and merge the `brainer/work` pull request into `main`.
-2. In your authenticated local clone, check out and pull `main`, then run:
+### In GitHub, without a local build
 
-   ```sh
-   npm ci
-   npm run lint
-   npm run deploy
-   ```
+One-time owner setup after reviewing and merging the `brainer/work` PR:
 
-   `npm run deploy` runs the production build and checks automatically, then
-   publishes its output to `gh-pages`. You need your normal GitHub push access.
-3. Open **Settings → Pages → Build and deployment**. Select **Deploy from a
-   branch → gh-pages → / (root)** and save. Do not select `main / (root)`:
-   that serves uncompiled source and causes the blank page. If `gh-pages` is
-   not yet listed, complete the publish command first.
-4. After GitHub Pages finishes its deployment, check
-   `https://anupamas02.github.io/`: identity, projects, résumé and contact must
-   render. The served HTML should reference `/assets/*.js`, never
-   `/src/main.tsx`. GitHub/browser caches may briefly retain the old version.
+1. Open [`scripts/publish-pages.yml`](scripts/publish-pages.yml) on `main` and copy
+   its entire contents. In GitHub choose **Add file → Create new file**, name it
+   **`.github/workflows/publish-pages.yml`**, paste, and commit to `main` (or use
+   your normal reviewed PR process). The template is stored outside the workflow
+   directory because Brainer's connected app cannot write active workflows.
+   Your GitHub web editor can install it without changing Brainer's permissions;
+   a token-based commit instead needs workflow-write permission.
+2. In **Settings → Actions → General**, allow the official `actions/*` actions
+   used in that file. In **Settings → Pages → Build and deployment → Source**,
+   select **GitHub Actions**. If the `github-pages` environment restricts deployment
+   branches, allow `main` in **Settings → Environments → github-pages**.
+   The workflow requests `contents: read` for building and `pages: write` plus
+   `id-token: write` only for publishing; no PAT, new secret or broader default
+   token permission is needed. Existing environment approvals still apply.
+3. While signed in as **AnupamAS02**, open **Actions → Publish portfolio (owner
+   only) → Run workflow**, select **main**, then **Run workflow**. Approve the
+   environment if GitHub requests it. Repeat this step after future merges.
 
-Merging alone is not publishing when using this process. Repeat the publish
-command after future changes. No new secrets, environment keys or migration are
-needed. The team does not change settings, merge or run the deploy command.
+Only this explicit manual run publishes: no push, PR, merge or schedule trigger
+is configured. Other actors and branches are refused by the job guards. The
+workflow uses Node 22, `npm ci`, publishing-safeguard tests, lint, production build
+and production/metadata checks before uploading only `dist` to GitHub Pages.
+A failed build/check prevents publishing. This uses the same GitHub Pages site
+and URL, not a new host. It deploys a Pages artifact directly: merely pushing
+`gh-pages` with an Actions `GITHUB_TOKEN` would not trigger branch-based Pages.
 
-No Actions workflow is included: the connected GitHub app cannot create workflow
-files with its current permissions. The existing branch-based process above
-works without adding workflow permissions or changing hosts.
+### Existing local option
+
+The unchanged `npm run deploy` command builds, checks, then pushes `dist` to
+`gh-pages`. In your authenticated local clone, check out and pull reviewed `main`:
+
+```sh
+npm ci
+npm run lint
+npm run deploy
+```
+
+You need your normal GitHub push access. For this option, set **Settings → Pages
+→ Build and deployment → Deploy from a branch → gh-pages → / (root)** after
+publishing (`gh-pages` appears after the first publish). Switching from the
+Actions option requires this source change; switch back to **GitHub Actions**
+before the next workflow publish. Never select `main / (root)`: it serves
+uncompiled source instead of the full portfolio.
+
+### Confirm the published result
+
+After GitHub Pages finishes, check `https://anupamas02.github.io/`: identity,
+projects, résumé and contact must render. The served HTML should reference
+`/assets/*.js`, never `/src/main.tsx`; `/resume.pdf` and `/public/resume.pdf`
+should both open. Caches may briefly retain the previous version. No migration
+or environment keys are needed.
 
 ## Startup resilience
 

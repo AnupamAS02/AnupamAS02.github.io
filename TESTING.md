@@ -273,3 +273,50 @@ Header and footer now display Anupam Singh; the home link accessible name matche
 - Static modes at 320, 375, 768 and 1440px: no horizontal overflow; the expanded outline fits. Phone visual review confirms readable wrapping and the green email action. Keyboard Tab reaches summary, Enter opens it, Tab reaches the draft, and select-all selects its entire text for manual copy. The source-root Tab sequence then reaches the prepared email link and unchanged plain email alternative, with visible green 2px focus outlines. Production fallback keyboard disclosure and draft focus also pass. Browser-decoded mailto matches the outline; local/session storage remain empty.
 - Normal production regression: Contact navigation focuses the actual contact section, existing helper opens with Enter, no duplicate IDs, and no horizontal overflow at 320, 375, 768 and 1440px. Full application source is unchanged.
 - No external email app was launched or message sent; client-specific draft opening/editing and delivery are not claimed as tested. Source-root rendering relies on static HTML rather than application execution; production failure was simulated by a temporary server outside tracked files. No merge/deploy, hosting configuration, new keys or migrations. Founder reviews/merges the pull request and publishes through the existing README process.
+
+## Owner-triggered GitHub publishing — task 14
+
+- Prepared `scripts/publish-pages.yml` for the owner to install as
+  `.github/workflows/publish-pages.yml`. It stays outside the active workflow
+  directory because the connected app's previously recorded workflow-write
+  restriction prevents delivering that file directly. README gives the exact
+  GitHub web-editor installation, Pages source and Actions/environment permissions,
+  and owner action: **Actions → Publish portfolio (owner only) → Run workflow →
+  main → Run workflow**. No local build or PAT is needed for this option.
+- Manual dispatch is the only trigger. Both jobs require the repository owner as
+  original actor and triggering actor (including reruns), and `refs/heads/main`.
+  The build token has only `contents: read`; checkout does not persist credentials.
+  Only the dependent deployment job receives `pages: write` and `id-token: write`,
+  using the `github-pages` environment. All four official actions are pinned to
+  verified full commit SHAs. Runs are serialized without canceling an in-progress
+  publication; jobs have ten-minute timeouts.
+- The workflow uses Node 22 and `npm ci`, then publishing-safeguard tests, lint,
+  build/TypeScript and the existing production/metadata checks. It uploads only
+  the checked `dist` with one-day artifact retention and deploys that Pages
+  artifact. It neither pushes a hosting branch nor calls a repository-settings API.
+  This avoids GitHub's limitation that a `GITHUB_TOKEN` push to `gh-pages` does
+  not start branch-based Pages publishing.
+- Preserved `npm run deploy`/`predeploy` unchanged, all pending PR #6 résumé,
+  project-evidence and static enquiry work, and the existing full application.
+  README explains the owner-selected source modes: **GitHub Actions** for this
+  workflow, or **Deploy from a branch → gh-pages → / (root)** for local publishing.
+  Neither mode uses the uncompiled `main` root.
+- Node **22.23.5**: clean `npm ci` (zero reported vulnerabilities), publishing tests,
+  lint, production build/TypeScript, production and metadata checks pass.
+  Publishing tests use Node's built-in test runner and the locked YAML parser;
+  they validate manual-only triggers, owner/main/rerun guards, build-before-deploy,
+  least privilege, pinned actions, checked-dist packaging and credentials. Negative
+  cases reject unsafe mutations. Also copied the template temporarily to its
+  eventual workflow path and confirmed the installed file matches and passes;
+  the temporary active-path file was removed before commit.
+- `actionlint` 1.7.7 validates workflow syntax and expressions, including at its
+  installed path (ShellCheck integration disabled; inline commands are npm calls).
+  `git diff --check` passes. Local production preview renders the full portfolio,
+  Contact navigation focuses its real section, and the startup fallback hides
+  after React starts. At 375, 768 and 1440px there is no horizontal overflow or
+  broken loaded image. Both résumé paths return HTTP 200 PDF.
+- No GitHub workflow run, artifact upload, deployment, merge, Pages setting change,
+  or permission change was performed. GitHub runner/OIDC/Pages execution and the
+  resulting public site cannot be claimed as tested: those follow the owner's
+  installation, source selection and explicit run. The change is review-ready,
+  not installed or live. No new environment secrets or migration.
