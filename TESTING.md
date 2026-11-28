@@ -207,6 +207,39 @@ not `main / (root)`. After Pages completes, confirm live HTML uses `/assets/*.js
 and the full portfolio renders. These steps are also in README.
 Nothing is live from this correction until the owner merges and publishes it.
 
+### Fallback résumé compatibility and PR restoration — task 9 reopened
+
+The public page currently serves the static fallback from repository-root Pages:
+its `/resume.pdf` link returns 404, while the tracked PDF is under `public/`.
+The existing portfolio fallback, boundary and publishing changes are present in
+merged `main`; the previous branch commit with the URL fix was not present on the
+current PR branch. PR #6 was open with one README-only commit (`0ccf9d5`), so this
+follow-up restores the fix on top of that README change rather than replacing it.
+
+- Changed the static fallback PDF link to `/public/resume.pdf`. The build keeps
+  Vite's normal flattened `/resume.pdf` for full-app links and copies the same
+  tracked résumé to `dist/public/resume.pdf` for the fallback URL.
+- Added build checks for both production file paths, byte-for-byte equality with
+  `public/resume.pdf`, and all fallback identity, PDF, LinkedIn, GitHub, email,
+  authorisation and scope links.
+- `npm ci`, lint, production build/TypeScript, production and metadata checks,
+  and `git diff --check` pass. The existing Node 26 deprecation warning is
+  non-failing.
+- Local repository-root static serving: `/public/resume.pdf` is HTTP 200,
+  `application/pdf`; `/resume.pdf` is 404, as expected in that layout. Browser
+  snapshot shows fallback content and the four original destinations.
+- Static production preview: `/public/resume.pdf` and `/resume.pdf` both return
+  HTTP 200, `application/pdf`, 71,965 bytes; all three copies are identical.
+  Browser preview displays the full portfolio, with fallback hidden after app
+  startup, and retains the app's existing résumé links.
+- Live public host check: `/public/resume.pdf` returns HTTP 200 PDF and old
+  `/resume.pdf` returns 404; GitHub source link returns 200. LinkedIn automated
+  request returns HTTP 999, so normal-browser availability is not claimed. The
+  email destination is preserved; no email application was launched.
+- No `npm run deploy` or merge was performed. This test doesn't claim the public
+  page has changed: the founder must review and merge the updated PR and then
+  run `npm run deploy` from `main`, with Pages set to `gh-pages / (root)`.
+
 ## Enquiry readiness — task 10
 
 - Added “Before you get in touch” within the existing contact card, retaining its approved navy/green styling. Three short subsections cover general product/goal/timeframe/owner context; written owner authorisation and agreed systems, environments, methods, exclusions, timing and stop contact; and information not to send through ordinary email. The next step leads to the unchanged email address and optional draft helper. No new service, availability, credential, engagement, price or delivery claims.
@@ -220,3 +253,173 @@ Nothing is live from this correction until the owner merges and publishes it.
 ## Task 7 — personal-name correction
 
 Header and footer now display Anupam Singh; the home link accessible name matches. Updated title, social site name, image description, no-JavaScript fallback branding and social-preview artwork consistently. Logo, visual design and real repository/canonical/contact URLs remain unchanged. Responsive browser verification at 320, 375, 768 and 1440px confirms both names, no old domain-style visible name and no horizontal overflow. Desktop and mobile screenshots captured. Build, lint, production checks, metadata and diff checks pass.
+
+## Project evidence in the static fallback — task 12
+
+- Added clear fallback paths to two existing records. The personal portfolio project links directly to its public GitHub source and is described as a responsive React/TypeScript single-page site built with Vite. The academic team-of-two digit-recognition project is summarized with its recorded Otsu method, Multi-Layer Perceptron, and Anupam's Java (J2SE) GUI contribution; its résumé link states that a summary is available, with no public code repository or demo listed. Both are explicitly separated from client security assessments.
+- Retained the fallback identity, résumé URL `/public/resume.pdf`, LinkedIn profile, direct email, and written-authorisation/agreed-scope guidance. React app source and the full portfolio were not changed.
+- Expanded `scripts/check-production.mjs` to verify the visible fallback's identity, project descriptions and links, personal/academic/client distinction, résumé, contact and authorisation copy in both `index.html` and `dist/index.html`; existing checks still verify the compiled app entry and both résumé output paths.
+- `npm ci` (0 reported vulnerabilities), `npm run lint`, `npm run build` (including TypeScript), `npm run check:production`, and `git diff --check` pass. Local static HTTP checks confirm both source-root and production preview serve the project evidence and permission guidance. `/public/resume.pdf` returns HTTP 200 `application/pdf` from both paths.
+- No public-site deploy or merge was performed. The change remains for founder review on `brainer/work`; review, merge, and the existing owner-operated publishing process are still required.
+
+## Static scoping email — task 13
+
+- Reused the full contact section’s non-sensitive product, goal, timeframe and system-owner context, written-authorisation/agreed-scope boundaries, and guidance on what not to email. Fit and availability remain for discussion; no service or commercial promise was added.
+- Added a static encoded mailto with the same recipient, subject and initial body as the full application helper. Visitors edit and send in their email app, not on this page. A native disclosure exposes a labelled, read-only, selectable outline for review/manual copy when no email client is configured. The original plain email link and sentence remain unchanged. No visitor input, form, extra script, storage, network API, dependency or backend was added.
+- Preserved all pending résumé and project evidence changes. The fallback heading uses a distinct `fallback-contact` ID so it cannot intercept the full application’s `#contact` destination.
+- Extended `npm run check:production` to check source and built HTML for context, boundaries, the unchanged plain mailto, a labelled selectable outline, and decoded recipient/subject/body equality with that outline. Existing compiled-entry, metadata, project evidence and dual-path résumé checks remain.
+- `npm ci` (0 reported vulnerabilities), lint, build/TypeScript, production checks, metadata checks and `git diff --check`: pass. The existing Node 26 deprecation warning is non-failing.
+- Browser checked actual source-root static serving at port 4174, production `dist` with application JS deliberately returning 503 at port 4175, and normal production preview at port 4173. Both static modes expose the context, permission boundaries, outline and email alternatives. `/public/resume.pdf` returns HTTP 200 PDF in both modes; normal preview retains the full portfolio and hides the fallback after startup.
+- Static modes at 320, 375, 768 and 1440px: no horizontal overflow; the expanded outline fits. Phone visual review confirms readable wrapping and the green email action. Keyboard Tab reaches summary, Enter opens it, Tab reaches the draft, and select-all selects its entire text for manual copy. The source-root Tab sequence then reaches the prepared email link and unchanged plain email alternative, with visible green 2px focus outlines. Production fallback keyboard disclosure and draft focus also pass. Browser-decoded mailto matches the outline; local/session storage remain empty.
+- Normal production regression: Contact navigation focuses the actual contact section, existing helper opens with Enter, no duplicate IDs, and no horizontal overflow at 320, 375, 768 and 1440px. Full application source is unchanged.
+- No external email app was launched or message sent; client-specific draft opening/editing and delivery are not claimed as tested. Source-root rendering relies on static HTML rather than application execution; production failure was simulated by a temporary server outside tracked files. No merge/deploy, hosting configuration, new keys or migrations. Founder reviews/merges the pull request and publishes through the existing README process.
+
+## Owner-triggered GitHub publishing — task 14
+
+- Prepared `scripts/publish-pages.yml` for the owner to install as
+  `.github/workflows/publish-pages.yml`. It stays outside the active workflow
+  directory because the connected app's previously recorded workflow-write
+  restriction prevents delivering that file directly. README gives the exact
+  GitHub web-editor installation, Pages source and Actions/environment permissions,
+  and owner action: **Actions → Publish portfolio (owner only) → Run workflow →
+  main → Run workflow**. No local build or PAT is needed for this option.
+- Manual dispatch is the only trigger. Both jobs require the repository owner as
+  original actor and triggering actor (including reruns), and `refs/heads/main`.
+  The build token has only `contents: read`; checkout does not persist credentials.
+  Only the dependent deployment job receives `pages: write` and `id-token: write`,
+  using the `github-pages` environment. All four official actions are pinned to
+  verified full commit SHAs. Runs are serialized without canceling an in-progress
+  publication; jobs have ten-minute timeouts.
+- The workflow uses Node 22 and `npm ci`, then publishing-safeguard tests, lint,
+  build/TypeScript and the existing production/metadata checks. It uploads only
+  the checked `dist` with one-day artifact retention and deploys that Pages
+  artifact. It neither pushes a hosting branch nor calls a repository-settings API.
+  This avoids GitHub's limitation that a `GITHUB_TOKEN` push to `gh-pages` does
+  not start branch-based Pages publishing.
+- Preserved `npm run deploy`/`predeploy` unchanged, all pending PR #6 résumé,
+  project-evidence and static enquiry work, and the existing full application.
+  README explains the owner-selected source modes: **GitHub Actions** for this
+  workflow, or **Deploy from a branch → gh-pages → / (root)** for local publishing.
+  Neither mode uses the uncompiled `main` root.
+- Node **22.23.5**: clean `npm ci` (zero reported vulnerabilities), publishing tests,
+  lint, production build/TypeScript, production and metadata checks pass.
+  Publishing tests use Node's built-in test runner and the locked YAML parser;
+  they validate manual-only triggers, owner/main/rerun guards, build-before-deploy,
+  least privilege, pinned actions, checked-dist packaging and credentials. Negative
+  cases reject unsafe mutations. Also copied the template temporarily to its
+  eventual workflow path and confirmed the installed file matches and passes;
+  the temporary active-path file was removed before commit.
+- `actionlint` 1.7.7 validates workflow syntax and expressions, including at its
+  installed path (ShellCheck integration disabled; inline commands are npm calls).
+  `git diff --check` passes. Local production preview renders the full portfolio,
+  Contact navigation focuses its real section, and the startup fallback hides
+  after React starts. At 375, 768 and 1440px there is no horizontal overflow or
+  broken loaded image. Both résumé paths return HTTP 200 PDF.
+- No GitHub workflow run, artifact upload, deployment, merge, Pages setting change,
+  or permission change was performed. GitHub runner/OIDC/Pages execution and the
+  resulting public site cannot be claimed as tested: those follow the owner's
+  installation, source selection and explicit run. The change is review-ready,
+  not installed or live. No new environment secrets or migration.
+
+## Assessable portfolio project detail — task 15
+
+- Selected the personal portfolio because its public source provides an inspectable
+  implementation. The academic digit-recognition record remains a résumé summary;
+  no additional code, findings, evaluation or outcomes were inferred from it.
+- Added `projects/cybersecurity-portfolio.html`, linked from the full application's
+  existing evidence card and the static fallback's portfolio entry. It covers
+  purpose, frontend/build/contact implementation, specific documented content
+  contributions and limitations. Commit history credits the initial implementation
+  to `neerajjoshi-github` and includes later Brainer-assisted changes; the page does
+  not present Anupam as sole author or this work as a client security assessment.
+  His recorded photo and page-title edits are linked directly. Implementation links
+  are pinned to public `main` revision `22d726e8d3baa05e70c930aeaa19275df0393ba4`.
+- The detail is standalone HTML with inline styling, system fonts and no JavaScript,
+  forms, embeds or external asset dependencies. It uses the approved navy/slate/
+  green/light palette. Added a Vite HTML input so its URL is identical under source-
+  root static serving and the production build. No router, dependency or host change.
+- Retained all pending résumé, evidence, static enquiry and owner-publishing work.
+  Direct source links remain on both evidence entries. Both existing contact
+  implementations are untouched; the detail adds the same plain email recipient
+  beside non-sensitive enquiry and written-authorisation/agreed-scope guidance.
+- Clean `npm ci` (zero reported vulnerabilities), all 13 publishing-safeguard tests,
+  lint, TypeScript/production build, production/metadata checks and `git diff --check`
+  pass on Node 26.13.1. The existing Node module deprecation warning is non-failing.
+  `check:production` now also checks source/built detail metadata, attribution,
+  limitations, required source and contact links, unique IDs, skip-link target,
+  no-script access and both evidence-entry links. README explains the HTML entry.
+- Public GitHub API and raw-source requests returned HTTP 200 for all linked
+  commits, pinned files, current repository and history. This checks their source
+  destinations; it does not assert that the pending changes are published.
+- Browser: full production preview (4173), repository-root static serving (4174)
+  and production with application JS deliberately returning 503 (4175). Following
+  each entry's detail link opens the record; returning from it to the source-root
+  page restores the fallback and its contact links. The record has zero scripts
+  in all three modes and no horizontal overflow at 320, 375, 768 and 1440px.
+  Phone and desktop visual reviews confirm readable wrapping and spacing. Keyboard
+  Tab reaches a visibly focused skip link; Enter focuses the record's main content.
+- Contact regression: full-app Contact navigation focuses `#contact`, the startup
+  fallback is hidden after React commits, and Enter opens the optional draft helper.
+  At the same four widths, the expanded full app has no horizontal overflow or
+  duplicate IDs. The repository-root fallback's disclosure opens its existing
+  selectable outline, prepared mailto and unchanged plain email alternative.
+  No email client was launched and no email was sent; client delivery isn't tested.
+- No merge, deployment, settings change, workflow installation, new secret or
+  migration. The owner reviews/merges the existing PR and publishes using the
+  README's existing owner-operated process before any public-site change is live.
+
+## Task #16 — private web/API assessment preparation (28 November 2026)
+
+Prepared on `brainer/work`, preserving all pending owner-review changes. New page:
+`/readiness.html`, linked from the full contact section and static portfolio fallback.
+It uses the existing React/TypeScript/Vite toolchain and the approved navy/slate/green
+palette with light surfaces. No backend, new dependencies or publishing changes.
+
+### Automated checks
+
+- `npm ci`: passed; audit reported zero vulnerabilities.
+- `npm run check:publishing`: all 13 owner-publishing safeguard tests passed.
+- `npm run lint`, `npm run build`, `npm run check:production`: passed.
+- New production-check suite: 23 tests, including each of the four states (unanswered,
+  understood, needs clarification, not sure) in each of five areas; all 1,024 combined
+  answer states; unique five-step output; authorisation/privacy boundaries; immutable
+  rule input; static/source and built-page checklist, contact and entry links.
+- Source assertions reject storage/transmission/tracking APIs and sensitive input types;
+  verify pagehide/pageshow clearing and no third-party script/style dependencies.
+- Existing production entry, résumé, metadata, project-detail and publishing checks pass.
+
+### Production-preview browser checks
+
+Used the production build on localhost:4173, not the public site.
+
+- Empty review gives five useful starting actions rather than requiring an answer or
+  awarding a score. Mixed answers give clarification/contact actions and confirmation
+  reminders for understood areas. Changing an answer removes stale results/copy status.
+- Native radio controls respond to Space and arrow keys; Tab moves between groups.
+  Enter opens review; focus moves to the results heading. Controls and readonly plan
+  have descriptive labels; copy feedback uses a status region. No focus trap observed.
+- Copy succeeds on an explicit button action. Simulated clipboard permission denial
+  focuses and selects the entire 1,611-character mixed plan for manual copying, with
+  clear feedback. No enquiry is sent or email populated with readiness answers.
+- Clear answers removes selections/results; reload starts empty; navigating to the
+  existing portfolio contact section and going back starts empty. pagehide/pageshow
+  handlers also clear memory for back/forward cache restoration.
+- Browser resource entries remained the same three same-origin static assets during
+  answer/review interactions. Local storage and session storage remained empty;
+  cookies stayed empty; the page URL had no answers or query. No analytics added.
+- At 320, 390, 768 and 1280px: no horizontal overflow, and all choice labels/buttons
+  are at least 44px high. Phone and desktop visual checks passed.
+- A separate temporary server served the exact built HTML/assets with CSP
+  `script-src 'none'`. With helper execution blocked, the visible independent checklist
+  contains all five preparation areas and the existing email link, with no answer
+  collection controls. The static portfolio retains its new readiness link and existing
+  scoping outline/mailto route. This checks script-unavailable behaviour, not a claim
+  of cross-browser assistive-technology certification.
+
+### Owner review and publishing
+
+Review `/readiness.html` after `npm run build && npm run preview`. The change belongs
+in the existing owner-review PR; nothing is merged or published by the team. After
+owner merge, use the existing documented Pages publishing process. The new Vite HTML
+entry is included in `dist`; no new keys, migrations or host settings are required.
+The public page remains unverified until owner publishing.
