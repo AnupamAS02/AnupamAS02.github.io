@@ -22,9 +22,14 @@ const Projects = () => {
             <div><dt className="font-semibold">Technical context</dt><dd className="text-subtle">A static, single-page site with section navigation and a responsive layout.</dd></div>
             <div><dt className="font-semibold">What to review</dt><dd className="text-subtle">Component structure, page content, and build setup in the source code.</dd></div>
           </dl>
-          <a href="https://github.com/AnupamAS02/AnupamAS02.github.io" className="mt-auto pt-4 border-t border-secondary w-full text-accent inline-flex items-center min-h-11 font-semibold underline underline-offset-4">
-            Review portfolio source on GitHub
-          </a>
+          <div className="mt-auto pt-4 border-t border-secondary w-full flex flex-col items-start gap-2">
+            <a href="/projects/cybersecurity-portfolio.html" className="text-accent inline-flex items-center min-h-11 font-semibold underline underline-offset-4">
+              Read the portfolio project detail
+            </a>
+            <a href="https://github.com/AnupamAS02/AnupamAS02.github.io" className="text-accent inline-flex items-center min-h-11 underline underline-offset-4">
+              Review portfolio source on GitHub
+            </a>
+          </div>
         </Card>
         <Card className="p-6 sm:p-8 flex flex-col items-start gap-5">
           <p className="text-xs font-mono text-accent">Academic research project · Team of two</p>

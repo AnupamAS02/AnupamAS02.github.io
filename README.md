@@ -100,4 +100,14 @@ without JavaScript or when an application asset fails to load. React hides it on
 after a successful commit; a rendering error boundary restores it on component
 failure. This is not a substitute for publishing a production build.
 
+## Project record
+
+The full portfolio and its static fallback both link to
+[`projects/cybersecurity-portfolio.html`](projects/cybersecurity-portfolio.html).
+This standalone, no-JavaScript record explains the personal project's purpose,
+implementation, evidenced contributions and limits, linking to fixed public
+source revisions. Vite's additional HTML entry preserves the same URL in `dist`;
+it is also readable when serving the repository root. `npm run check:production`
+checks both versions and the evidence-entry links. No publishing steps change.
+
 See `TESTING.md` for verification and known external-link limitations.

@@ -320,3 +320,50 @@ Header and footer now display Anupam Singh; the home link accessible name matche
   resulting public site cannot be claimed as tested: those follow the owner's
   installation, source selection and explicit run. The change is review-ready,
   not installed or live. No new environment secrets or migration.
+
+## Assessable portfolio project detail — task 15
+
+- Selected the personal portfolio because its public source provides an inspectable
+  implementation. The academic digit-recognition record remains a résumé summary;
+  no additional code, findings, evaluation or outcomes were inferred from it.
+- Added `projects/cybersecurity-portfolio.html`, linked from the full application's
+  existing evidence card and the static fallback's portfolio entry. It covers
+  purpose, frontend/build/contact implementation, specific documented content
+  contributions and limitations. Commit history credits the initial implementation
+  to `neerajjoshi-github` and includes later Brainer-assisted changes; the page does
+  not present Anupam as sole author or this work as a client security assessment.
+  His recorded photo and page-title edits are linked directly. Implementation links
+  are pinned to public `main` revision `22d726e8d3baa05e70c930aeaa19275df0393ba4`.
+- The detail is standalone HTML with inline styling, system fonts and no JavaScript,
+  forms, embeds or external asset dependencies. It uses the approved navy/slate/
+  green/light palette. Added a Vite HTML input so its URL is identical under source-
+  root static serving and the production build. No router, dependency or host change.
+- Retained all pending résumé, evidence, static enquiry and owner-publishing work.
+  Direct source links remain on both evidence entries. Both existing contact
+  implementations are untouched; the detail adds the same plain email recipient
+  beside non-sensitive enquiry and written-authorisation/agreed-scope guidance.
+- Clean `npm ci` (zero reported vulnerabilities), all 13 publishing-safeguard tests,
+  lint, TypeScript/production build, production/metadata checks and `git diff --check`
+  pass on Node 26.13.1. The existing Node module deprecation warning is non-failing.
+  `check:production` now also checks source/built detail metadata, attribution,
+  limitations, required source and contact links, unique IDs, skip-link target,
+  no-script access and both evidence-entry links. README explains the HTML entry.
+- Public GitHub API and raw-source requests returned HTTP 200 for all linked
+  commits, pinned files, current repository and history. This checks their source
+  destinations; it does not assert that the pending changes are published.
+- Browser: full production preview (4173), repository-root static serving (4174)
+  and production with application JS deliberately returning 503 (4175). Following
+  each entry's detail link opens the record; returning from it to the source-root
+  page restores the fallback and its contact links. The record has zero scripts
+  in all three modes and no horizontal overflow at 320, 375, 768 and 1440px.
+  Phone and desktop visual reviews confirm readable wrapping and spacing. Keyboard
+  Tab reaches a visibly focused skip link; Enter focuses the record's main content.
+- Contact regression: full-app Contact navigation focuses `#contact`, the startup
+  fallback is hidden after React commits, and Enter opens the optional draft helper.
+  At the same four widths, the expanded full app has no horizontal overflow or
+  duplicate IDs. The repository-root fallback's disclosure opens its existing
+  selectable outline, prepared mailto and unchanged plain email alternative.
+  No email client was launched and no email was sent; client delivery isn't tested.
+- No merge, deployment, settings change, workflow installation, new secret or
+  migration. The owner reviews/merges the existing PR and publishes using the
+  README's existing owner-operated process before any public-site change is live.
